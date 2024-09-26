@@ -17,12 +17,12 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div>
-            <img className="w-full" src="/public/banner.webp" alt="" />
+            <img className="w-full" src="/banner.webp" alt="" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div>
-            <img className="w-full" src="/public/banner-2.webp" alt="" />
+            <img className="w-full" src="/banner-2.webp" alt="" />
           </div>
         </SwiperSlide>
       </Swiper>

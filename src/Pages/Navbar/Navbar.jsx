@@ -62,11 +62,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="text-xl">
-            <img
-              className="w-[150px]"
-              src="/public/logo_transparent.png"
-              alt=""
-            />
+            <img className="w-[150px]" src="/logo_transparent.png" alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
