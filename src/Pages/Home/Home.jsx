@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import ShopByBrand from "./ShopByBrand";
 import ShopByCategory from "./ShopByCategory";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
       <div className="mt-6">
         <Banner />
         <ShopByCategory />
+        <ShopByBrand />
       </div>
     </div>
   );
