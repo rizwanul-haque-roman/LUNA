@@ -3,7 +3,7 @@ const ShopByBrand = () => {
     <div className="mt-16">
       <h1 className="text-center text-4xl font-bold">SHOP BY BRANDS</h1>
       <div className="carousel gap-6 rounded-box mt-16">
-        <div className="carousel-ite">
+        <div className="carousel-item">
           <img className="rounded-2xl" src="/brands/iba.webp" alt="iba" />
         </div>
         <div className="carousel-item">
