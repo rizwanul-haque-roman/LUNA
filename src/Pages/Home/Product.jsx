@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 const Product = () => {
   return (
     <div>
-      <div className="my-16 flex justify-between items-center">
+      <div className="mt-16 flex justify-between items-center">
         <h3 className="text-6xl font-bold">Makeup</h3>
         <div className="flex justify-between items-center gap-8 text-lg font-medium">
           <div className="flex gap-4 justify-center items-center">
@@ -18,7 +18,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="my-16">
+      <div className="mt-16">
         <ProductCard />
       </div>
     </div>

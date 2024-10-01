@@ -2,6 +2,7 @@ import Banner from "./Banner";
 import Product from "./Product";
 import ShopByBrand from "./ShopByBrand";
 import ShopByCategory from "./ShopByCategory";
+import TopSeller from "./TopSeller";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
         <ShopByCategory />
         <ShopByBrand />
         <Product />
+        <TopSeller />
       </div>
     </div>
   );
