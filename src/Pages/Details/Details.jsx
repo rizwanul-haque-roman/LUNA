@@ -2,10 +2,23 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { PiMedal } from "react-icons/pi";
 import { BsCashCoin } from "react-icons/bs";
 
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/thumbs";
+
+// import required modules
+import { FreeMode, Thumbs } from "swiper/modules";
+
 const Details = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="container mx-auto">
-      <div className="breadcrumbs mt-6 text-xl">
+      <div className="breadcrumbs mt-6 text-lg">
         <ul>
           <li>
             <a>Home</a>
@@ -14,8 +27,80 @@ const Details = () => {
         </ul>
       </div>
       <div className="flex gap-16">
-        <div className="w-[500px] h-[500px] bg-red-200">
-          <h1>Image here</h1>
+        <div className="w-[500px]">
+          {/* <h1>Image here</h1> */}
+          <div>
+            <Swiper
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
+              modules={[FreeMode, Thumbs]}
+              className="mySwiper2"
+            >
+              <SwiperSlide>
+                <img src="details_page/1.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/2.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/3.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/4.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/5.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/6.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/7.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/8.webp" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          <div>
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              loop={true}
+              spaceBetween={10}
+              slidesPerView={4}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Thumbs]}
+              className="mySwiper mt-3"
+            >
+              <SwiperSlide>
+                <img src="details_page/1.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/2.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/3.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/4.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/5.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/6.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/7.webp" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="details_page/8.webp" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
         <div className="space-y-4 w-1/2">
           <h3>LAFZ</h3>
