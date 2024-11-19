@@ -128,7 +128,7 @@ const Details = () => {
           </div>
           <div className="flex gap-3 items-center">
             <BsCashCoin size={25} />
-            <p>Cash On Delivery Available.</p>
+            <p className="font-bold">CASH ON DELIVERY.</p>
           </div>
           <div>
             <h4 className="text-xl font-bold">Product Description</h4>
