@@ -13,22 +13,30 @@ import "swiper/css/thumbs";
 
 // import required modules
 import { FreeMode, Thumbs } from "swiper/modules";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Details = () => {
+  const product = useLoaderData();
+  let loading = true;
+  if (product) {
+    loading = false;
+  }
+  console.log(product);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="container mx-auto">
-      <div className="breadcrumbs mt-6 text-lg">
+      {loading?"loading...": 
+      <>
+        <div className="breadcrumbs mt-6 text-lg">
         <ul>
           <li>
-            <a>Home</a>
+            <Link to={"/"}>Home</Link>
           </li>
-          <li>Lafz</li>
+          <li>{product.brandName}</li>
         </ul>
       </div>
       <div className="flex gap-16">
         <div className="w-[500px]">
-          {/* <h1>Image here</h1> */}
           <div>
             <Swiper
               loop={true}
@@ -39,28 +47,16 @@ const Details = () => {
               className="mySwiper2"
             >
               <SwiperSlide>
-                <img src="details_page/1.webp" />
+                <img src={product["thumbnailUrl"][0]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/2.webp" />
+                <img src={product["thumbnailUrl"][1]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/3.webp" />
+                <img src={product["thumbnailUrl"][2]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/4.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/5.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/6.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/7.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/8.webp" />
+                <img src={product["thumbnailUrl"][3]} />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -76,38 +72,26 @@ const Details = () => {
               className="mySwiper mt-3"
             >
               <SwiperSlide>
-                <img src="details_page/1.webp" />
+                <img src={product["thumbnailUrl"][0]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/2.webp" />
+                <img src={product["thumbnailUrl"][1]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/3.webp" />
+                <img src={product["thumbnailUrl"][2]} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="details_page/4.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/5.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/6.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/7.webp" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="details_page/8.webp" />
+                <img src={product["thumbnailUrl"][3]} />
               </SwiperSlide>
             </Swiper>
           </div>
         </div>
         <div className="space-y-4 w-1/2">
-          <h3>LAFZ</h3>
+          <h3>{product.brandName}</h3>
           <p className="text-xl font-medium">
-            Lafz Anti Pollution CC Cream (30ml)
+          {product.productTitle}
           </p>
-          <p className="text-2xl font-bold text-[#F0729F]">৳499</p>
+          <p className="text-2xl font-bold text-[#F0729F]">৳ {product.price} BDT</p>
           <div className="flex gap-6">
             <button className="btn btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg">
               Add to Wishlist
@@ -133,18 +117,12 @@ const Details = () => {
           <div>
             <h4 className="text-xl font-bold">Product Description</h4>
             <p>
-              Made for all skin types, this CC cream gives medium coverage and
-              hides imperfections and discolorations. Enriched with vitamin C,
-              it soothes and conceals redness and blemishes, while vitamin E,
-              with its antioxidant and anti-inflammatory properties, nourishes
-              your skin, making it plump and supple. Its creamy texture gives a
-              beautiful, natural matte finish to your skin that lasts throughout
-              the day. Free from harmful chemicals such as parabens and
-              sulfates, it is safe for all skin types.
+            {product.productDescription}
             </p>
           </div>
         </div>
       </div>
+      </>}
     </div>
   );
 };

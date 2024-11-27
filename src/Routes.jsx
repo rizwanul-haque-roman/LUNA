@@ -14,8 +14,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/details",
+        path: "/details/:id",
         element: <Details />,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:5000/allProducts/${params.id}`
+          ),
       },
       {
         path: "/upload",

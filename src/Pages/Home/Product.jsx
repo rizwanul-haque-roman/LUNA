@@ -1,8 +1,23 @@
 import { HiOutlineArrowsUpDown } from "react-icons/hi2";
 import { IoFilterOutline } from "react-icons/io5";
 import ProductCard from "../../components/ProductCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Product = () => {
+  const [loader, setLoader] = useState(true);
+  const [allProducts, setAllProducts] = useState([])
+
+  useEffect(()=>{
+    setLoader(true);
+    axios.get(`http://localhost:5000/allProducts`).then((res)=>{
+      setAllProducts(res.data);
+      setLoader(false);
+    })
+  },[])
+
+  console.log(allProducts)
+
   return (
     <div>
       <div className="mt-16 flex justify-between items-center">
@@ -18,9 +33,14 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16">
-        <ProductCard />
-      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 my-12">
+                {allProducts.map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    productData={product}
+                  />
+                ))}
+              </div>
     </div>
   );
 };
