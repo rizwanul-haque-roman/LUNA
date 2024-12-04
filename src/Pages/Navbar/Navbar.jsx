@@ -1,9 +1,34 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { PiHandbagSimpleThin } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [cartLen, setCartLen] = useState(0);
+
+  // Update cart length from localStorage
+  const updateCartLen = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartLen(cart.length);
+  };
+
+  // Initial load and listen for changes
+  useEffect(() => {
+    // Set initial cart length
+    updateCartLen();
+
+    // Listen for storage changes (when the cart is updated elsewhere)
+    const handleStorageChange = () => {
+      updateCartLen();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   const links = (
     <>
       <li>
@@ -86,11 +111,17 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="flex justify-center items-center gap-8">
+          <div className="flex justify-center items-center gap-8">
             <CiHeart size={30} />
-            <PiHandbagSimpleThin size={30} />
+            <Link to={"/cart"}>
+              <p className="flex gap-22">
+                <PiHandbagSimpleThin size={30} />
+                {/* {JSON.parse(localStorage.getItem("cartlen"))} */}
+                {cartLen}
+              </p>
+            </Link>
             <CiUser size={30} />
-          </a>
+          </div>
         </div>
       </div>
     </div>

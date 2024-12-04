@@ -3,6 +3,7 @@ import Root from "./Root";
 import Home from "./Pages/Home/Home";
 import Details from "./Pages/Details/Details";
 import OrderForm from "./Pages/OrderForm/OderForm";
+import Cart from "./Pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -17,13 +18,15 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <Details />,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/allProducts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/allProducts/${params.id}`),
       },
       {
         path: "/order",
         element: <OrderForm />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

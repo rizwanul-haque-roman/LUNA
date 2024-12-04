@@ -96,7 +96,7 @@ const Details = () => {
               </p>
               <div className="flex gap-6">
                 <button className="btn btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg">
-                  Add to Wishlist
+                  Add to cart
                 </button>
                 <Link
                   to={{
