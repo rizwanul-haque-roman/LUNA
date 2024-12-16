@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 const Cart = () => {
   const [cartLen, setCartLen] = useState(0);
   const [quantities, setQuantities] = useState({}); // Object to store quantities
+  const [shippingCost, setShippingCost] = useState(0);
+  const [shippingArea, setShippingArea] = useState("");
+  const [total, setTotal] = useState(0);
 
+  // Fetch cart from localStorage
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -24,8 +28,24 @@ const Cart = () => {
     setQuantities(initialQuantities);
   }, [cart]);
 
+  // Handle Shipping Cost and Area Change
+  const handleSelectChange = (event) => {
+    const cost = parseInt(event.target.value);
+    setShippingCost(cost);
+    setShippingArea(cost === 70 ? "Inside Dhaka" : "Outside Dhaka");
+  };
+
+  // Update Total Price on cart or quantity change
   useEffect(() => {
-    // Save cart and quantities to localStorage
+    const subtotal = cart.reduce(
+      (sum, product) => sum + product.price * (quantities[product._id] || 0),
+      0
+    );
+    setTotal(subtotal + parseInt(shippingCost));
+  }, [cart, quantities, shippingCost]);
+
+  // Save cart to localStorage
+  useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("cartlen", JSON.stringify(cart.length));
     updateCartLen();
@@ -51,6 +71,27 @@ const Cart = () => {
     setCart(updatedCart);
   };
 
+  // Handle order submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const orderInfo = {
+      "Customer Name": form.name.value,
+      "Phone Number": form.phone.value,
+      Email: form.email.value,
+      Address: form.address.value,
+      Products: cart
+        .map((product) => `${product.productTitle} x${quantities[product._id]}`)
+        .join(", "),
+      "Shipping Area": shippingArea,
+      Total: total,
+      Status: "Pending",
+    };
+
+    // Simulate sending the order data
+    console.log("Order Data Submitted:", orderInfo);
+  };
+
   return (
     <div>
       <div className="container mx-auto">
@@ -61,7 +102,6 @@ const Cart = () => {
         <div className="min-h-screen">
           <div className="overflow-x-auto">
             <table className="table">
-              {/* Head */}
               <thead>
                 <tr className="text-base items-center">
                   <th>SL. NO.</th>
@@ -130,6 +170,180 @@ const Cart = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+          {/* ====================================================================
+          ========================================================================= */}
+          {/* <div className="flex justify-center mt-12 gap-12">
+            <form onSubmit={handleSubmit} className="w-1/2 mb-12">
+              <label className="form-control w-full">
+                <span className="label-text text-lg font-semibold">
+                  Full Name
+                </span>
+                <input
+                  type="text"
+                  name="name"
+                  className="w-full py-4 pl-1 border-2 rounded-lg"
+                  required
+                />
+              </label>
+              <label className="form-control w-full">
+                <span className="label-text text-lg font-semibold">
+                  Phone Number
+                </span>
+                <input
+                  type="tel"
+                  name="phone"
+                  className="w-full py-4 pl-1 border-2 rounded-lg"
+                  required
+                />
+              </label>
+              <label className="form-control w-full">
+                <span className="label-text text-lg font-semibold">
+                  Shipping Area
+                </span>
+                <select onChange={handleSelectChange} required>
+                  <option value="">Select Shipping Area</option>
+                  <option value={70}>Inside Dhaka - ৳ 70</option>
+                  <option value={130}>Outside Dhaka - ৳ 130</option>
+                </select>
+              </label>
+              <button
+                type="submit"
+                className="btn w-full mt-6 bg-[#DF8381] hover:bg-[#DE6B87] text-white text-xl"
+              >
+                Place Order
+              </button>
+            </form>
+            <div className="w-1/2">
+              <h4>Subtotal: ৳ {total - shippingCost}</h4>
+              <h4>Shipping: ৳ {shippingCost}</h4>
+              <h4>Total: ৳ {total}</h4>
+            </div>
+          </div> */}
+          {/* ====================================================================
+          ========================================================================= */}
+          <div>
+            <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
+              <h2 className="text-4xl font-bold">Place Order</h2>
+            </div>
+            <p className="lg:w-3/4 mt-6 text-xl">
+              Please fill out this form to help us deliver your products to you.
+            </p>
+          </div>
+          <div className="mt-12 gap-12 flex justify-center">
+            <form onSubmit={handleSubmit} className="w-1/2 mb-12">
+              <div className="">
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text text-lg font-semibold">
+                      Full Name
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="your name"
+                    name="name"
+                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                    required
+                  />
+                </label>
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text text-lg font-semibold">
+                      Phone Number
+                    </span>
+                  </div>
+                  <input
+                    type="tel"
+                    placeholder="phone number"
+                    name="phone"
+                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                    required
+                  />
+                </label>
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text text-lg font-semibold">
+                      Email Address
+                    </span>
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="type your email"
+                    name="email"
+                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                  />
+                </label>
+                <label className="form-control w-full mt-6">
+                  <div className="label">
+                    <span className="label-text text-lg font-semibold">
+                      Address
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Delivery address"
+                    name="address"
+                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                    required
+                  />
+                </label>
+                <label className="form-control w-full mt-6">
+                  <div className="label">
+                    <span className="label-text text-lg font-semibold">
+                      Shipping Area
+                    </span>
+                  </div>
+                  <select
+                    className="select w-full outline"
+                    onChange={handleSelectChange}
+                    defaultValue=""
+                    required
+                  >
+                    <option value="" disabled selected>
+                      Shipping Area
+                    </option>
+                    <option value={70}>Inside Dhaka - ৳ 70</option>
+                    <option value={130}>Outside Dhaka - ৳ 130</option>
+                  </select>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                className={`mt-10 btn w-full bg-[#DF8381] hover:bg-[#DE6B87] text-xl text-white font-semibold border-none `}
+              >
+                Place Order
+              </button>
+            </form>
+            <div className="w-1/2">
+              <div className="border-b-2 pb-5">
+                <h4 className="font-semibold text-xl">Payment method</h4>
+                <p>Cash on Delivery</p>
+              </div>
+              <div className="flex justify-between items-center mt-6">
+                <h4 className="font-semibold text-xl">Subtotal</h4>
+                <div className="flex justify-between items-center">
+                  <p className="text-xl mx-6 font-mono">
+                    ৳ {total - shippingCost} BDT
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-6">
+                <h4 className="font-semibold text-xl">Shipping Charge</h4>
+                <div className="flex justify-between items-center">
+                  <p className="text-xl mx-6 font-mono">
+                    {shippingCost ? `৳ ${shippingCost}` : "None"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-6 py-6 border-t-2">
+                <h4 className="font-semibold text-xl">Total:</h4>
+                <div className="flex justify-between items-center">
+                  <p className="text-xl mx-6 font-mono">৳ {total} BDT</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
