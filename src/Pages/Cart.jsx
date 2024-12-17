@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Cart = () => {
   const [cartLen, setCartLen] = useState(0);
@@ -88,7 +90,37 @@ const Cart = () => {
       Status: "Pending",
     };
 
-    // Simulate sending the order data
+    // Send the order data
+    axios
+      .post("http://localhost:5000/orders", orderInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.acknowledged === true) {
+          Swal.fire({
+            title: "Success!",
+            text: "Order Placed Successfully!",
+            icon: "success",
+          });
+
+          // Clear the cart and reset quantities
+          setCart([]); // Clear the cart
+          setQuantities({}); // Reset quantities
+
+          // Remove cart from localStorage
+          localStorage.removeItem("cart");
+          localStorage.removeItem("cartlen");
+          setCartLen(0); // Reset cart length
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting order:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again!",
+          icon: "error",
+        });
+      });
+
     console.log("Order Data Submitted:", orderInfo);
   };
 
@@ -311,7 +343,12 @@ const Cart = () => {
 
               <button
                 type="submit"
-                className={`mt-10 btn w-full bg-[#DF8381] hover:bg-[#DE6B87] text-xl text-white font-semibold border-none `}
+                className={`mt-10 btn w-full text-xl font-semibold border-none ${
+                  cartLen === 0
+                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    : "bg-[#DF8381] hover:bg-[#DE6B87] text-white"
+                }`}
+                disabled={cartLen === 0}
               >
                 Place Order
               </button>
