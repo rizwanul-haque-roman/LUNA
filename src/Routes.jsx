@@ -4,6 +4,10 @@ import Home from "./Pages/Home/Home";
 import Details from "./Pages/Details/Details";
 import OrderForm from "./Pages/OrderForm/OderForm";
 import Cart from "./Pages/Cart";
+import Dashboard from "./admin/Dashboard";
+import OrderLogs from "./admin/OrderLogs";
+import TrackOrders from "./admin/TrackOrders";
+import AdminHome from "./admin/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +31,24 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/adminHome",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/trackOrders",
+        element: <TrackOrders />,
+      },
+      {
+        path: "/dashboard/orderLogs",
+        element: <OrderLogs />,
       },
     ],
   },
