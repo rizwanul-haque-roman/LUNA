@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
 import { IoNewspaper } from "react-icons/io5";
 import { FaPeopleCarry } from "react-icons/fa";
 import { IoDocuments } from "react-icons/io5";
@@ -51,7 +52,7 @@ const Dashboard = () => {
                   }
                 >
                   <div className="flex gap-3 items-center">
-                    <FaHome className="text-2xl text-[#F0729F]" />
+                    <MdAdminPanelSettings className="text-2xl text-[#F0729F]" />
                     <p className="text-[#F0729F]">Admin Home</p>
                   </div>
                 </NavLink>
@@ -79,6 +80,14 @@ const Dashboard = () => {
                   <div className="flex gap-3 items-center">
                     <FaPeopleCarry className="text-2xl text-[#F0729F]" />
                     <p className="text-[#F0729F]">Order Logs</p>
+                  </div>
+                </NavLink>
+              </li>
+              <li className="pt-12">
+                <NavLink to="/" className="text-[#F0729F] font-bold">
+                  <div className="flex gap-3 items-center">
+                    <FaHome className="text-2xl text-[#F0729F]" />
+                    <p className="text-[#F0729F]">Go to Homepage</p>
                   </div>
                 </NavLink>
               </li>

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Product from "../Home/Product";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function OrderForm() {
   const [quantity, setQuantity] = useState(1);
@@ -9,6 +12,7 @@ function OrderForm() {
 
   const location = useLocation();
   const { product } = location.state || {};
+  const navigate = useNavigate();
 
   const handleSelectChange = (event) => {
     setShippingCost(event.target.value);
@@ -24,25 +28,61 @@ function OrderForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
+
+    // Retrieve the last order number from localStorage or initialize it to 999 (so the first order becomes 1000)
+    let lastOrderNumber =
+      parseInt(localStorage.getItem("lastOrderNumber")) || 999;
+    const newOrderNumber = lastOrderNumber + 1;
+
+    // Update localStorage with the new order number for future orders
+    localStorage.setItem("lastOrderNumber", newOrderNumber);
+
+    // Create the current order date as an ISO string
+    const orderDate = new Date().toLocaleDateString("en-CA"); // OutputExample: 2025-02-03
+
+    // Build the orderInfo object with the additional fields
     const orderInfo = {
       "customer Name": form.name.value,
       "Phone Number": form.phone.value,
       Email: form.email.value,
       Address: form.address.value,
       Product: product.productTitle,
+      ProductId: product._id,
       Quantity: quantity,
       "Shipping Area": shippingArea,
       Total: quantity * product.price + parseInt(shippingCost),
       status: "pending",
+      OrderDate: orderDate, // Order date field
+      orderNumber: newOrderNumber, // Order serial number
+      url: product["thumbnailUrl"][0], // Product image URL
     };
 
-    // after successfully placing the order Need to update the stock data
-    console.log("Shipping Data:", orderInfo);
+    // Send the order data
+    axios
+      .post("http://localhost:5000/orders", orderInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.acknowledged === true) {
+          Swal.fire({
+            title: "Success!",
+            text: "Order Placed Successfully!",
+            icon: "success",
+          }).then(() => {
+            navigate("/"); // Redirect to homepage after user clicks "OK"
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting order:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again!",
+          icon: "error",
+        });
+      });
 
-    // setQuantity(1);
-    // setShippingCost(0);
-    // setShippingArea("");
-    // setTotal(0);
+    // Now you can use orderInfo, e.g., send it to your server or process it further.
+    console.log("Order submitted:", orderInfo);
   };
 
   return (

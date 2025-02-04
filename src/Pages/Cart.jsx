@@ -77,6 +77,18 @@ const Cart = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
+
+    // Retrieve the last order number from localStorage or initialize it to 999 (so the first order becomes 1000)
+    let lastOrderNumber =
+      parseInt(localStorage.getItem("lastOrderNumber")) || 999;
+    const newOrderNumber = lastOrderNumber + 1;
+
+    // Update localStorage with the new order number for future orders
+    localStorage.setItem("lastOrderNumber", newOrderNumber);
+
+    // Create the current order date as an ISO string
+    const orderDate = new Date().toLocaleDateString("en-CA"); // OutputExample: 2025-02-03
+
     const orderInfo = {
       "Customer Name": form.name.value,
       "Phone Number": form.phone.value,
@@ -85,9 +97,12 @@ const Cart = () => {
       Products: cart
         .map((product) => `${product.productTitle} x${quantities[product._id]}`)
         .join(", "),
+      ProductIDs: cart.map((product) => product._id),
       "Shipping Area": shippingArea,
       Total: total,
       Status: "Pending",
+      OrderDate: orderDate, // Order date field
+      orderNumber: newOrderNumber, // Order serial number
     };
 
     // Send the order data
@@ -100,6 +115,8 @@ const Cart = () => {
             title: "Success!",
             text: "Order Placed Successfully!",
             icon: "success",
+          }).then(() => {
+            navigate("/"); // Redirect to homepage after user clicks "OK"
           });
 
           // Clear the cart and reset quantities
