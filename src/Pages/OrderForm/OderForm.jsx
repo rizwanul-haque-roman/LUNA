@@ -29,15 +29,6 @@ function OrderForm() {
     event.preventDefault();
     const form = event.target;
 
-    // Retrieve the last order number from localStorage or initialize it to 999 (so the first order becomes 1000)
-    let lastOrderNumber =
-      parseInt(localStorage.getItem("lastOrderNumber")) || 999;
-    const newOrderNumber = lastOrderNumber + 1;
-
-    // Update localStorage with the new order number for future orders
-    localStorage.setItem("lastOrderNumber", newOrderNumber);
-
-    // Create the current order date as an ISO string
     const orderDate = new Date().toLocaleDateString("en-CA"); // OutputExample: 2025-02-03
 
     // Build the orderInfo object with the additional fields
@@ -53,7 +44,6 @@ function OrderForm() {
       Total: quantity * product.price + parseInt(shippingCost),
       status: "pending",
       OrderDate: orderDate, // Order date field
-      orderNumber: newOrderNumber, // Order serial number
       url: product["thumbnailUrl"][0], // Product image URL
     };
 
@@ -224,21 +214,6 @@ function OrderForm() {
               </p>
             </div>
           </div>
-          {/* <div className="flex justify-between items-center mt-6">
-            <h4 className="font-semibold text-xl">Shipping Area</h4>
-            <select
-              className="select w-full max-w-xs outline"
-              onChange={handleSelectChange}
-              defaultValue=""
-              required
-            >
-              <option value="" disabled selected>
-                Shipping Area
-              </option>
-              <option value={70}>Inside Dhaka - ৳ 70</option>
-              <option value={130}>Inside Dhaka - ৳ 130</option>
-            </select>
-          </div> */}
           <div className="flex justify-between items-center mt-6">
             <h4 className="font-semibold text-xl">Shipping Charge</h4>
             <div className="flex justify-between items-center">

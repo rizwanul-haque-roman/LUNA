@@ -86,7 +86,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="text-xl">
+          <a className="text-xl" href="/">
             <img className="w-[150px]" src="/logo_transparent.png" alt="" />
           </a>
         </div>

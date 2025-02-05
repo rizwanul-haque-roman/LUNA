@@ -78,15 +78,6 @@ const Cart = () => {
     event.preventDefault();
     const form = event.target;
 
-    // Retrieve the last order number from localStorage or initialize it to 999 (so the first order becomes 1000)
-    let lastOrderNumber =
-      parseInt(localStorage.getItem("lastOrderNumber")) || 999;
-    const newOrderNumber = lastOrderNumber + 1;
-
-    // Update localStorage with the new order number for future orders
-    localStorage.setItem("lastOrderNumber", newOrderNumber);
-
-    // Create the current order date as an ISO string
     const orderDate = new Date().toLocaleDateString("en-CA"); // OutputExample: 2025-02-03
 
     const orderInfo = {
@@ -102,7 +93,6 @@ const Cart = () => {
       Total: total,
       Status: "Pending",
       OrderDate: orderDate, // Order date field
-      orderNumber: newOrderNumber, // Order serial number
     };
 
     // Send the order data
@@ -220,57 +210,6 @@ const Cart = () => {
               </tbody>
             </table>
           </div>
-          {/* ====================================================================
-          ========================================================================= */}
-          {/* <div className="flex justify-center mt-12 gap-12">
-            <form onSubmit={handleSubmit} className="w-1/2 mb-12">
-              <label className="form-control w-full">
-                <span className="label-text text-lg font-semibold">
-                  Full Name
-                </span>
-                <input
-                  type="text"
-                  name="name"
-                  className="w-full py-4 pl-1 border-2 rounded-lg"
-                  required
-                />
-              </label>
-              <label className="form-control w-full">
-                <span className="label-text text-lg font-semibold">
-                  Phone Number
-                </span>
-                <input
-                  type="tel"
-                  name="phone"
-                  className="w-full py-4 pl-1 border-2 rounded-lg"
-                  required
-                />
-              </label>
-              <label className="form-control w-full">
-                <span className="label-text text-lg font-semibold">
-                  Shipping Area
-                </span>
-                <select onChange={handleSelectChange} required>
-                  <option value="">Select Shipping Area</option>
-                  <option value={70}>Inside Dhaka - ৳ 70</option>
-                  <option value={130}>Outside Dhaka - ৳ 130</option>
-                </select>
-              </label>
-              <button
-                type="submit"
-                className="btn w-full mt-6 bg-[#DF8381] hover:bg-[#DE6B87] text-white text-xl"
-              >
-                Place Order
-              </button>
-            </form>
-            <div className="w-1/2">
-              <h4>Subtotal: ৳ {total - shippingCost}</h4>
-              <h4>Shipping: ৳ {shippingCost}</h4>
-              <h4>Total: ৳ {total}</h4>
-            </div>
-          </div> */}
-          {/* ====================================================================
-          ========================================================================= */}
           <div>
             <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
               <h2 className="text-4xl font-bold">Place Order</h2>
