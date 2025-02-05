@@ -89,6 +89,7 @@ const Cart = () => {
         .map((product) => `${product.productTitle} x${quantities[product._id]}`)
         .join(", "),
       ProductIDs: cart.map((product) => product._id),
+      Quantities: cart.map((product) => quantities[product._id]), // Include quantities
       "Shipping Area": shippingArea,
       Total: total,
       Status: "Pending",
