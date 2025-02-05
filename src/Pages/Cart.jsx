@@ -81,7 +81,7 @@ const Cart = () => {
     const orderDate = new Date().toLocaleDateString("en-CA"); // OutputExample: 2025-02-03
 
     const orderInfo = {
-      "Customer Name": form.name.value,
+      "customer Name": form.name.value,
       "Phone Number": form.phone.value,
       Email: form.email.value,
       Address: form.address.value,
@@ -92,7 +92,7 @@ const Cart = () => {
       Quantities: cart.map((product) => quantities[product._id]), // Include quantities
       "Shipping Area": shippingArea,
       Total: total,
-      Status: "Pending",
+      status: "Pending",
       OrderDate: orderDate, // Order date field
     };
 

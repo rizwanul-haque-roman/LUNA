@@ -8,6 +8,7 @@ import Dashboard from "./admin/Dashboard";
 import OrderLogs from "./admin/OrderLogs";
 import TrackOrders from "./admin/TrackOrders";
 import AdminHome from "./admin/AdminHome";
+import OrderDetails from "./admin/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/trackOrders",
         element: <TrackOrders />,
+      },
+      {
+        path: "/dashboard/trackOrders/details/:id",
+        element: <OrderDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/order/${params.id}`),
       },
       {
         path: "/dashboard/orderLogs",
