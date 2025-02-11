@@ -3,7 +3,11 @@ import daisyui from "./node_modules/daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'login': "url('/loginPage.jpg')",
+      }
+    },
   },
   plugins: [daisyui],
   daisyui: {

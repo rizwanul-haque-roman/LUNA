@@ -1,166 +1,242 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "chart.js/auto";
 
 const AdminHome = () => {
+  const [orders, setOrders] = useState([]);
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [monthlyIncome, setMonthlyIncome] = useState(0);
+  const [totalCompletedOrders, setTotalCompletedOrders] = useState(0);
+  const [pendingOrders, setPendingOrders] = useState(0);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/orderLogs");
+        const ordersData = response.data;
+
+        // Calculations
+        let totalIncomeCalc = 0;
+        let monthlyIncomeCalc = 0;
+        let completedOrdersCount = 0;
+        let pendingOrdersCount = 0;
+        let incomeByDate = {};
+
+        const currentMonth = new Date().getMonth();
+        const currentYear = new Date().getFullYear();
+
+        ordersData.forEach((order) => {
+          const orderAmount = parseFloat(order.Total);
+          const orderDate = new Date(order.OrderDate);
+          const formattedDate = orderDate.toISOString().split("T")[0]; // YYYY-MM-DD format
+
+          if (order.status === "approved") {
+            totalIncomeCalc += orderAmount;
+            completedOrdersCount++;
+
+            if (
+              orderDate.getMonth() === currentMonth &&
+              orderDate.getFullYear() === currentYear
+            ) {
+              monthlyIncomeCalc += orderAmount;
+            }
+
+            // Track income per day
+            incomeByDate[formattedDate] =
+              (incomeByDate[formattedDate] || 0) + orderAmount;
+          } else if (order.status === "pending") {
+            pendingOrdersCount++;
+          }
+        });
+
+        // Convert incomeByDate to an array for the chart
+        const dailyIncomeData = Object.entries(incomeByDate).map(
+          ([date, amount]) => ({
+            date,
+            amount,
+          })
+        );
+
+        setOrders(ordersData);
+        setTotalIncome(totalIncomeCalc);
+        setMonthlyIncome(monthlyIncomeCalc);
+        setTotalCompletedOrders(completedOrdersCount);
+        setPendingOrders(pendingOrdersCount);
+      } catch (error) {
+        console.error("Failed to fetch orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   return (
-    <div>
-      <div>
-        <div className="flex justify-between gap-8 items-center">
-          <div className="bg-[#E6E6FA] w-1/2 px-8 py-4 rounded-lg">
-            <h3 className="font-semibold text-2xl">Total Income</h3>
-            <p className="text-6xl py-8 font-bold">$1000</p>
-          </div>
-          <div className="bg-[#E6E6FA] w-1/2 px-8 py-4 rounded-lg">
-            <h3 className="font-semibold text-2xl">Monthly Income</h3>
-            <p className="text-6xl py-8 font-bold">$1000</p>
-          </div>
+    <div className="p-6">
+      <div className="grid grid-cols-2 gap-8">
+        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+          <h3 className="font-semibold text-2xl">Total Income</h3>
+          <p className="text-6xl py-4 font-bold">
+            ৳ {totalIncome.toFixed(2)} BDT
+          </p>
         </div>
-        <div className="flex justify-between gap-8 items-center mt-8">
-          <div className="bg-[#E6E6FA] w-1/2 px-8 py-4 rounded-lg">
-            <h3 className="font-semibold text-2xl">Total completed orders</h3>
-            <p className="text-6xl py-8 font-bold">100</p>
-          </div>
-          <div className="bg-[#E6E6FA] w-1/2 px-8 py-4 rounded-lg">
-            <h3 className="font-semibold text-2xl">Pending orders</h3>
-            <p className="text-6xl py-8 font-bold">10</p>
-          </div>
+        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+          <h3 className="font-semibold text-2xl">Monthly Income</h3>
+          <p className="text-6xl py-4 font-bold">
+            ৳ {monthlyIncome.toFixed(2)} BDT
+          </p>
         </div>
       </div>
-      <div className="my-8">
-        <h2 className="font-semibold text-2xl">Last 6 approved orders</h2>
+      <div className="grid grid-cols-2 gap-8 mt-8">
+        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+          <h3 className="font-semibold text-2xl">Total Completed Orders</h3>
+          <p className="text-6xl py-4 font-bold">{totalCompletedOrders}</p>
+        </div>
+        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+          <h3 className="font-semibold text-2xl">Pending Orders</h3>
+          <p className="text-6xl py-4 font-bold">{pendingOrders}</p>
+        </div>
       </div>
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
+
+      {/* Table for Last 6 Orders */}
+      {/* <div className="mt-8">
+        <h2 className="font-semibold text-2xl">Last 6 Orders</h2>
+        <div className="overflow-x-auto mt-4">
+          <table className="table table-sm text-base w-full border border-gray-300">
             <thead>
-              <tr>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th></th>
+              <tr className="bg-gray-200 text-black font-bold text-base">
+                <th className="border border-gray-300 px-4 py-2">Order No</th>
+                <th className="border border-gray-300 px-4 py-2">Order Date</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Customer Name
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Phone</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Delivery Address
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Status</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Order Value
+                </th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
+              {orders.slice(0, 6).map((order) => (
+                <tr
+                  key={order._id}
+                  className={`border border-gray-300 ${
+                    order.status === "approved"
+                      ? "bg-green-100"
+                      : order.status === "cancelled"
+                      ? "bg-red-100"
+                      : ""
+                  }`}
+                >
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.orderNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.OrderDate}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order["customer Name"]}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order["Phone Number"]}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.Address}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <div
+                      className={`badge ${
+                        order.status === "approved"
+                          ? "badge-success"
+                          : "badge-error"
+                      }`}
+                    >
+                      {order.status}
                     </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
-                </td>
-                <td>Purple</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 font-bold">
+                    ৳ {order.Total} BDT
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div> */}
+      <div className="mt-8">
+        <h2 className="font-semibold text-2xl">Last 10 Orders</h2>
+        <div className="overflow-x-auto mt-4">
+          <table className="table table-sm text-base w-full border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200 text-black font-bold text-base">
+                <th className="border border-gray-300 px-4 py-2">Order No</th>
+                <th className="border border-gray-300 px-4 py-2">Order Date</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Customer Name
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Phone</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Delivery Address
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Status</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Order Value
                 </th>
               </tr>
-              {/* row 2 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
+            </thead>
+            <tbody>
+              {orders.slice(0, 10).map((order) => (
+                <tr
+                  key={order._id}
+                  className={`border border-gray-300 ${
+                    order.status === "approved"
+                      ? "bg-green-100"
+                      : order.status === "cancelled"
+                      ? "bg-red-100"
+                      : order.status === "pending"
+                      ? "bg-yellow-100"
+                      : ""
+                  }`}
+                >
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.orderNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.OrderDate}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order["customer Name"]}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order["Phone Number"]}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {order.Address}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <div
+                      className={`badge ${
+                        order.status === "approved"
+                          ? "badge-success"
+                          : order.status === "cancelled"
+                          ? "badge-error"
+                          : order.status === "pending"
+                          ? "badge-warning"
+                          : ""
+                      }
+                      }`}
+                    >
+                      {order.status}
                     </div>
-                    <div>
-                      <div className="font-bold">Brice Swyre</div>
-                      <div className="text-sm opacity-50">China</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Carroll Group
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Tax Accountant
-                  </span>
-                </td>
-                <td>Red</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">Marjy Ferencz</div>
-                      <div className="text-sm opacity-50">Russia</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Rowe-Schoen
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Office Assistant I
-                  </span>
-                </td>
-                <td>Crimson</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
-              {/* row 4 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">Yancy Tear</div>
-                      <div className="text-sm opacity-50">Brazil</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Wyman-Ledner
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Community Outreach Specialist
-                  </span>
-                </td>
-                <td>Indigo</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 font-bold">
+                    ৳ {order.Total} BDT
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

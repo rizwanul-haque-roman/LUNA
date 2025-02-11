@@ -9,6 +9,10 @@ import OrderLogs from "./admin/OrderLogs";
 import TrackOrders from "./admin/TrackOrders";
 import AdminHome from "./admin/AdminHome";
 import OrderDetails from "./admin/OrderDetails";
+import Products from "./admin/Products";
+import Login from "./admin/Login";
+import PrivateRoute from "./Private/PrivateRoute";
+import UploadProduct from "./admin/UploadProduct";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +37,19 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/lunastore_admin",
+        element: <Login />,
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/adminHome",
@@ -56,6 +68,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/orderLogs",
         element: <OrderLogs />,
+      },
+      {
+        path: "/dashboard/products",
+        element: <Products />,
+      },
+      {
+        path: "/dashboard/UploadProduct",
+        element: <UploadProduct />,
       },
     ],
   },

@@ -1,25 +1,35 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { IoNewspaper } from "react-icons/io5";
-import { FaPeopleCarry } from "react-icons/fa";
-import { IoDocuments } from "react-icons/io5";
-import { RiPlayListAddLine } from "react-icons/ri";
+import { FaPeopleCarry, FaWarehouse } from "react-icons/fa";
 import { useContext, useState } from "react";
-// // import { AuthContext } from "../../auth/AuthProvider";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { AuthContext } from "../Context/AuthProvider";
+import { toast } from "react-toastify"; // For notifications (optional)
+import "react-toastify/dist/ReactToastify.css"; // Import styles if using react-toastify
 
 const Dashboard = () => {
   const location = useLocation();
   const path = location.pathname;
+  const navigate = useNavigate();
   const [admin, setAdmin] = useState(false);
   const [trainer, setTrainer] = useState(false);
   const [member, setMember] = useState(false);
-  //   const { user, loader } = useContext(AuthContext);
-  //   const axiosSecure = useAxiosSecure();
-
+  const { user, logOut, loader } = useContext(AuthContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Handle Logout
+  const handleLogout = async () => {
+    try {
+      await logOut(); // Assuming logOut is an async function from AuthContext
+      toast.success("Logged out successfully!"); // Notify user
+      navigate("/lunastore_admin"); // Redirect to login page
+    } catch (error) {
+      console.error("Logout failed:", error);
+      toast.error("Failed to log out. Please try again."); // Error notification
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#FDF1F5]">
@@ -83,6 +93,32 @@ const Dashboard = () => {
                   </div>
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/dashboard/UploadProduct"
+                  className={({ isActive }) =>
+                    isActive ? "text-[#F0729F] font-bold" : ""
+                  }
+                >
+                  <div className="flex gap-3 items-center">
+                    <FaWarehouse className="text-2xl text-[#F0729F]" />
+                    <p className="text-[#F0729F]">Add Products</p>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/products"
+                  className={({ isActive }) =>
+                    isActive ? "text-[#F0729F] font-bold" : ""
+                  }
+                >
+                  <div className="flex gap-3 items-center">
+                    <FaWarehouse className="text-2xl text-[#F0729F]" />
+                    <p className="text-[#F0729F]">Products</p>
+                  </div>
+                </NavLink>
+              </li>
               <li className="pt-12">
                 <NavLink to="/" className="text-[#F0729F] font-bold">
                   <div className="flex gap-3 items-center">
@@ -92,16 +128,14 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-            {/* <div className="divider"></div>
-            <li>
-              <NavLink to="/">Home</NavLink>
+          </ul>
+          <ul className="absolute bottom-0 left-0 right-0 p-6">
+            <li
+              className="text-[#F0729F] text-lg font-bold cursor-pointer"
+              onClick={handleLogout}
+            >
+              Logout
             </li>
-            <li>
-              <NavLink to="/allClasses">Classes</NavLink>
-            </li>
-            <li>
-              <NavLink to="/forum">Forum</NavLink>
-            </li> */}
           </ul>
         </div>
         <div className="flex-1 p-6 lg:p-8 rounded-xl ml-8 bg-white">
