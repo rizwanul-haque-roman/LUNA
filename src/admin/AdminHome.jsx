@@ -72,28 +72,30 @@ const AdminHome = () => {
 
   return (
     <div className="p-6">
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-8">
         <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Total Income</h3>
-          <p className="text-6xl py-4 font-bold">
+          <p className="text-2xl lg:text-6xl py-4 font-bold">
             ৳ {totalIncome.toFixed(2)} BDT
           </p>
         </div>
         <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Monthly Income</h3>
-          <p className="text-6xl py-4 font-bold">
+          <p className="text-2xl lg:text-6xl py-4 font-bold">
             ৳ {monthlyIncome.toFixed(2)} BDT
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 mt-8">
+      <div className="grid lg:grid-cols-2 gap-8 mt-8">
         <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Total Completed Orders</h3>
-          <p className="text-6xl py-4 font-bold">{totalCompletedOrders}</p>
+          <p className="text-2xl lg:text-6xl py-4 font-bold">
+            {totalCompletedOrders}
+          </p>
         </div>
         <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Pending Orders</h3>
-          <p className="text-6xl py-4 font-bold">{pendingOrders}</p>
+          <p className="text-2xl lg:text-6xl py-4 font-bold">{pendingOrders}</p>
         </div>
       </div>
 

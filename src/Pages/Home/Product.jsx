@@ -21,8 +21,8 @@ const Product = ({ cart, setCart }) => {
 
   return (
     <div>
-      <div className="mt-16 flex justify-between items-center">
-        <h3 className="text-6xl font-bold">Makeup</h3>
+      <div className="mt-4 lg:mt-16 flex justify-between items-center">
+        <h3 className="text-3xl lg:text-4xl font-bold">Makeup</h3>
         <div className="flex justify-between items-center gap-8 text-lg font-medium">
           <div className="flex gap-4 justify-center items-center">
             <HiOutlineArrowsUpDown size={25} />

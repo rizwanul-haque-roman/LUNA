@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { MdSpaceDashboard } from "react-icons/md";
+import { MdOutlineAddBusiness } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { IoNewspaper } from "react-icons/io5";
@@ -8,6 +8,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-toastify"; // For notifications (optional)
 import "react-toastify/dist/ReactToastify.css"; // Import styles if using react-toastify
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -35,10 +37,10 @@ const Dashboard = () => {
     <div className="min-h-screen bg-[#FDF1F5]">
       <div className="p-8 h-[100dvh] flex flex-col md:flex-row">
         <button
-          className="md:hidden bg-clr-main text-white p-2 m-4 rounded-md"
+          className="md:hidden bg-clr-main text-black p-2 m-4 rounded-md"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          {isSidebarOpen ? "Close Menu" : "Open Menu"}
+          {isSidebarOpen ? <RxCross2 /> : <RxHamburgerMenu />}
         </button>
         <div
           className={`fixed inset-y-0 left-0 transform ${
@@ -101,7 +103,7 @@ const Dashboard = () => {
                   }
                 >
                   <div className="flex gap-3 items-center">
-                    <FaWarehouse className="text-2xl text-[#F0729F]" />
+                    <MdOutlineAddBusiness className="text-2xl text-[#F0729F]" />
                     <p className="text-[#F0729F]">Add Products</p>
                   </div>
                 </NavLink>
@@ -138,9 +140,9 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-        <div className="flex-1 p-6 lg:p-8 rounded-xl ml-8 bg-white">
+        <div className="flex-1 p-6 lg:p-8 rounded-xl lg:ml-8 bg-white">
           {path === "/dashboard" && (
-            <div className="text-7xl font-bold h-[80vh] flex justify-center items-center text-[#F0729F]">
+            <div className="text-3xl lg:text-7xl font-bold h-[80vh] text-center flex justify-center items-center text-[#F0729F]">
               <p>Welcome to Dashboard</p>
             </div>
           )}

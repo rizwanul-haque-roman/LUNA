@@ -134,14 +134,14 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="container mx-auto">
+      <div className="w-11/12 lg:container mx-auto">
         <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
-          <h2 className="text-4xl font-bold">My Cart</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold">My Cart</h2>
           <p className="font-semibold text-xl">{cartLen} Items</p>
         </div>
         <div className="min-h-screen">
           <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table table-xs lg:table-md">
               <thead>
                 <tr className="text-base items-center">
                   <th>SL. NO.</th>
@@ -213,14 +213,14 @@ const Cart = () => {
           </div>
           <div>
             <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
-              <h2 className="text-4xl font-bold">Place Order</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold">Place Order</h2>
             </div>
             <p className="lg:w-3/4 mt-6 text-xl">
               Please fill out this form to help us deliver your products to you.
             </p>
           </div>
-          <div className="mt-12 gap-12 flex justify-center">
-            <form onSubmit={handleSubmit} className="w-1/2 mb-12">
+          <div className="mt-12 gap-12 flex flex-col lg:fle-row justify-center">
+            <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
               <div className="">
                 <label className="form-control w-full">
                   <div className="label">
@@ -310,7 +310,7 @@ const Cart = () => {
                 Place Order
               </button>
             </form>
-            <div className="w-1/2">
+            <div className="lg:w-1/2">
               <div className="border-b-2 pb-5">
                 <h4 className="font-semibold text-xl">Payment method</h4>
                 <p>Cash on Delivery</p>

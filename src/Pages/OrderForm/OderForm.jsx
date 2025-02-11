@@ -76,20 +76,20 @@ function OrderForm() {
   };
 
   return (
-    <div className="min-h-screen pt-28 w-11/12 lg:container mx-auto">
+    <div className="min-h-screen pt-4 lg:pt-28 w-11/12 lg:container mx-auto">
       <div>
         <h1 className="text-5xl font-bold">Order Form</h1>
         <p className="lg:w-3/4 mt-6 text-xl">
           Please fill out this form to help us deliver your products to you.
         </p>
       </div>
-      <div className="mt-12 gap-12 flex justify-center">
-        <form onSubmit={handleSubmit} className="w-1/2 mb-12">
+      <div className="mt-4 ;g:mt-12 gap-12 flex flex-col lg:flex-row justify-center">
+        <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
           <div className="my-6 border-b-2">
             <h3 className="font-semi text-2xl pb-4">{product.productTitle}</h3>
           </div>
           <div className="">
-            <label className="form-control w-full">
+            <label className="form-control lg:w-full">
               <div className="label">
                 <span className="label-text text-lg font-semibold">
                   Full Name
@@ -172,7 +172,7 @@ function OrderForm() {
             Place Order
           </button>
         </form>
-        <div className="w-1/2">
+        <div className="lg:w-1/2">
           <div className="border-b-2 pb-5">
             <h4 className="font-semibold text-xl">Payment method</h4>
             <p>Cash on Delivery</p>

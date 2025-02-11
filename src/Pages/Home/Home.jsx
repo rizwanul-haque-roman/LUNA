@@ -18,13 +18,13 @@ const Home = () => {
     window.dispatchEvent(new Event("storage"));
   }, [cart]);
   return (
-    <div className="container mx-auto">
+    <div className="w-11/12 lg:container mx-auto">
       <div className="mt-6">
         <Banner />
         <ShopByCategory />
         <ShopByBrand />
         <Product cart={cart} setCart={setCart} />
-        <TopSeller />
+        {/* <TopSeller /> */}
       </div>
     </div>
   );
