@@ -24,7 +24,7 @@ const Details = () => {
   console.log(product);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div className="container mx-auto">
+    <div className="w-11/12 lg:container mx-auto mb-6">
       {loading ? (
         "loading..."
       ) : (
@@ -37,8 +37,8 @@ const Details = () => {
               <li>{product.brandName}</li>
             </ul>
           </div>
-          <div className="flex gap-16">
-            <div className="w-[500px]">
+          <div className="flex flex-col lg:flex-row gap-16">
+            <div className="w-auto lg:w-[500px]">
               <div>
                 <Swiper
                   loop={true}
@@ -88,14 +88,14 @@ const Details = () => {
                 </Swiper>
               </div>
             </div>
-            <div className="space-y-4 w-1/2">
+            <div className="space-y-4 lg:w-1/2">
               <h3>{product.brandName}</h3>
               <p className="text-xl font-medium">{product.productTitle}</p>
               <p className="text-2xl font-bold text-[#F0729F]">
                 ৳ {product.price} BDT
               </p>
               <div className="flex gap-6">
-                <button className="btn btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg">
+                <button className="btn lg:btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg">
                   Add to cart
                 </button>
                 <Link
@@ -104,7 +104,7 @@ const Details = () => {
                   }}
                   state={{ product }}
                 >
-                  <button className="btn btn-wide bg-[#F0729F] hover:bg-[#f54b87] text-lg">
+                  <button className="btn lg:btn-wide bg-[#F0729F] hover:bg-[#f54b87] text-lg">
                     Buy Now
                   </button>
                 </Link>

@@ -24,7 +24,7 @@ const Home = () => {
         <ShopByCategory />
         <ShopByBrand />
         <Product cart={cart} setCart={setCart} />
-        {/* <TopSeller /> */}
+        <TopSeller />
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const Dashboard = () => {
                 >
                   <div className="flex gap-3 items-center">
                     <IoNewspaper className="text-2xl text-[#F0729F]" />
-                    <p className="text-[#F0729F]">Track Order</p>
+                    <p className="text-[#F0729F]">Pending Orders</p>
                   </div>
                 </NavLink>
               </li>
@@ -91,7 +91,7 @@ const Dashboard = () => {
                 >
                   <div className="flex gap-3 items-center">
                     <FaPeopleCarry className="text-2xl text-[#F0729F]" />
-                    <p className="text-[#F0729F]">Order Logs</p>
+                    <p className="text-[#F0729F]">Order History</p>
                   </div>
                 </NavLink>
               </li>

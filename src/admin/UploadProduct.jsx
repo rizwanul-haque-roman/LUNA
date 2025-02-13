@@ -36,7 +36,7 @@ const UploadProduct = () => {
         formData.append("image", file);
 
         const response = await axios.post(
-          `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`,
+          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB}`,
           formData
         );
 
@@ -63,7 +63,7 @@ const UploadProduct = () => {
 
     try {
       const response = await axios.post(
-        "https://your-mongodb-api.com/products",
+        "http://localhost:5000/uploadProduct",
         product
       );
 
@@ -81,6 +81,8 @@ const UploadProduct = () => {
           productDescription: "",
           thumbnailUrl: [],
         });
+
+        console.log(product);
         setImages([]);
       }
     } catch (error) {
