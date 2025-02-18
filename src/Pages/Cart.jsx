@@ -8,6 +8,7 @@ const Cart = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [shippingArea, setShippingArea] = useState("");
   const [total, setTotal] = useState(0);
+  const [loader, setLoader] = useState(false);
 
   // Fetch cart from localStorage
   const [cart, setCart] = useState(() => {
@@ -92,16 +93,18 @@ const Cart = () => {
       Quantities: cart.map((product) => quantities[product._id]), // Include quantities
       "Shipping Area": shippingArea,
       Total: total,
-      status: "Pending",
+      status: "pending",
       OrderDate: orderDate, // Order date field
     };
 
+    setLoader(true);
     // Send the order data
     axios
       .post("http://localhost:5000/orders", orderInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data.acknowledged === true) {
+          setLoader(false);
           Swal.fire({
             title: "Success!",
             text: "Order Placed Successfully!",
@@ -134,213 +137,230 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="w-11/12 lg:container mx-auto">
-        <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
-          <h2 className="text-3xl lg:text-4xl font-bold">My Cart</h2>
-          <p className="font-semibold text-xl">{cartLen} Items</p>
-        </div>
-        <div className="min-h-screen">
-          <div className="overflow-x-auto">
-            <table className="table table-xs lg:table-md">
-              <thead>
-                <tr className="text-base items-center">
-                  <th>SL. NO.</th>
-                  <th>Item</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((product, idx) => (
-                  <tr key={product._id}>
-                    <th className="text-xl">{idx + 1}</th>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle h-20 w-20">
-                            <img src={product.thumbnailUrl[0]} alt="Product" />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">
-                            {product.productTitle}
-                          </div>
-                          <div className="text-sm opacity-50">
-                            {product.brandName}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="flex justify-between items-center">
-                        <button
-                          onClick={() =>
-                            changeQuantity(product._id, "decrement")
-                          }
-                          className="text-2xl btn-sm btn btn-circle border"
-                        >
-                          -
-                        </button>
-                        <p className="text-xl mx-6">
-                          {quantities[product._id]}
-                        </p>
-                        <button
-                          onClick={() =>
-                            changeQuantity(product._id, "increment")
-                          }
-                          className="text-2xl btn btn-sm btn-circle border"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </td>
-                    <td>৳ {product.price}</td>
-                    <td>৳ {product.price * quantities[product._id]}</td>
-                    <th>
-                      <button
-                        onClick={() => removeFromCart(product._id)}
-                        className="btn btn-sm bg-red-300 hover:bg-red-500"
-                      >
-                        Remove
-                      </button>
-                    </th>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {loader ? (
+        <>
+          <div className="flex justify-center items-center h-[70vh] w-full">
+            <span className="loading loading-infinity loading-lg"></span>
           </div>
-          <div>
+        </>
+      ) : (
+        <>
+          <div className="w-11/12 lg:container mx-auto">
             <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
-              <h2 className="text-3xl lg:text-4xl font-bold">Place Order</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold">My Cart</h2>
+              <p className="font-semibold text-xl">{cartLen} Items</p>
             </div>
-            <p className="lg:w-3/4 mt-6 text-xl">
-              Please fill out this form to help us deliver your products to you.
-            </p>
-          </div>
-          <div className="mt-12 gap-12 flex flex-col lg:fle-row justify-center">
-            <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
-              <div className="">
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text text-lg font-semibold">
-                      Full Name
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="your name"
-                    name="name"
-                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
-                    required
-                  />
-                </label>
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text text-lg font-semibold">
-                      Phone Number
-                    </span>
-                  </div>
-                  <input
-                    type="tel"
-                    placeholder="phone number"
-                    name="phone"
-                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
-                    required
-                  />
-                </label>
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text text-lg font-semibold">
-                      Email Address
-                    </span>
-                  </div>
-                  <input
-                    type="email"
-                    placeholder="type your email"
-                    name="email"
-                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
-                  />
-                </label>
-                <label className="form-control w-full mt-6">
-                  <div className="label">
-                    <span className="label-text text-lg font-semibold">
-                      Address
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Delivery address"
-                    name="address"
-                    className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
-                    required
-                  />
-                </label>
-                <label className="form-control w-full mt-6">
-                  <div className="label">
-                    <span className="label-text text-lg font-semibold">
-                      Shipping Area
-                    </span>
-                  </div>
-                  <select
-                    className="select w-full outline"
-                    onChange={handleSelectChange}
-                    defaultValue=""
-                    required
-                  >
-                    <option value="" disabled selected>
-                      Shipping Area
-                    </option>
-                    <option value={70}>Inside Dhaka - ৳ 70</option>
-                    <option value={130}>Outside Dhaka - ৳ 130</option>
-                  </select>
-                </label>
+            <div className="min-h-screen">
+              <div className="overflow-x-auto">
+                <table className="table table-xs lg:table-md">
+                  <thead>
+                    <tr className="text-base items-center">
+                      <th>SL. NO.</th>
+                      <th>Item</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.map((product, idx) => (
+                      <tr key={product._id}>
+                        <th className="text-xl">{idx + 1}</th>
+                        <td>
+                          <div className="flex items-center gap-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle h-20 w-20">
+                                <img
+                                  src={product.thumbnailUrl[0]}
+                                  alt="Product"
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-bold">
+                                {product.productTitle}
+                              </div>
+                              <div className="text-sm opacity-50">
+                                {product.brandName}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="flex justify-between items-center">
+                            <button
+                              onClick={() =>
+                                changeQuantity(product._id, "decrement")
+                              }
+                              className="text-2xl btn-sm btn btn-circle border"
+                            >
+                              -
+                            </button>
+                            <p className="text-xl mx-6">
+                              {quantities[product._id]}
+                            </p>
+                            <button
+                              onClick={() =>
+                                changeQuantity(product._id, "increment")
+                              }
+                              className="text-2xl btn btn-sm btn-circle border"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td>৳ {product.price}</td>
+                        <td>৳ {product.price * quantities[product._id]}</td>
+                        <th>
+                          <button
+                            onClick={() => removeFromCart(product._id)}
+                            className="btn btn-sm bg-red-300 hover:bg-red-500"
+                          >
+                            Remove
+                          </button>
+                        </th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
+              <div>
+                <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
+                  <h2 className="text-3xl lg:text-4xl font-bold">
+                    Place Order
+                  </h2>
+                </div>
+                <p className="lg:w-3/4 mt-6 text-xl">
+                  Please fill out this form to help us deliver your products to
+                  you.
+                </p>
+              </div>
+              <div className="mt-12 gap-12 flex justify-center">
+                <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
+                  <div className="">
+                    <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text text-lg font-semibold">
+                          Full Name
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="your name"
+                        name="name"
+                        className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                        required
+                      />
+                    </label>
+                    <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text text-lg font-semibold">
+                          Phone Number
+                        </span>
+                      </div>
+                      <input
+                        type="tel"
+                        placeholder="phone number"
+                        name="phone"
+                        className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                        required
+                      />
+                    </label>
+                    <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text text-lg font-semibold">
+                          Email Address
+                        </span>
+                      </div>
+                      <input
+                        type="email"
+                        placeholder="type your email"
+                        name="email"
+                        required
+                        className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                      />
+                    </label>
+                    <label className="form-control w-full mt-6">
+                      <div className="label">
+                        <span className="label-text text-lg font-semibold">
+                          Address
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Delivery address"
+                        name="address"
+                        className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
+                        required
+                      />
+                    </label>
+                    <label className="form-control w-full mt-6">
+                      <div className="label">
+                        <span className="label-text text-lg font-semibold">
+                          Shipping Area
+                        </span>
+                      </div>
+                      <select
+                        className="select w-full outline"
+                        onChange={handleSelectChange}
+                        defaultValue=""
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Shipping Area
+                        </option>
+                        <option value={70}>Inside Dhaka - ৳ 70</option>
+                        <option value={130}>Outside Dhaka - ৳ 130</option>
+                      </select>
+                    </label>
+                  </div>
 
-              <button
-                type="submit"
-                className={`mt-10 btn w-full text-xl font-semibold border-none ${
-                  cartLen === 0
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-[#DF8381] hover:bg-[#DE6B87] text-white"
-                }`}
-                disabled={cartLen === 0}
-              >
-                Place Order
-              </button>
-            </form>
-            <div className="lg:w-1/2">
-              <div className="border-b-2 pb-5">
-                <h4 className="font-semibold text-xl">Payment method</h4>
-                <p>Cash on Delivery</p>
-              </div>
-              <div className="flex justify-between items-center mt-6">
-                <h4 className="font-semibold text-xl">Subtotal</h4>
-                <div className="flex justify-between items-center">
-                  <p className="text-xl mx-6 font-mono">
-                    ৳ {total - shippingCost} BDT
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-between items-center mt-6">
-                <h4 className="font-semibold text-xl">Shipping Charge</h4>
-                <div className="flex justify-between items-center">
-                  <p className="text-xl mx-6 font-mono">
-                    {shippingCost ? `৳ ${shippingCost}` : "None"}
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-between items-center mt-6 py-6 border-t-2">
-                <h4 className="font-semibold text-xl">Total:</h4>
-                <div className="flex justify-between items-center">
-                  <p className="text-xl mx-6 font-mono">৳ {total} BDT</p>
+                  <button
+                    type="submit"
+                    className={`mt-10 btn w-full text-xl font-semibold border-none ${
+                      cartLen === 0
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-[#DF8381] hover:bg-[#DE6B87] text-white"
+                    }`}
+                    disabled={cartLen === 0}
+                  >
+                    Place Order
+                  </button>
+                </form>
+                <div className="lg:w-1/2">
+                  <div className="border-b-2 pb-5">
+                    <h4 className="font-semibold text-xl">Payment method</h4>
+                    <p>Cash on Delivery</p>
+                  </div>
+                  <div className="flex justify-between items-center mt-6">
+                    <h4 className="font-semibold text-xl">Subtotal</h4>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xl mx-6 font-mono">
+                        ৳ {total - shippingCost} BDT
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-6">
+                    <h4 className="font-semibold text-xl">Shipping Charge</h4>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xl mx-6 font-mono">
+                        {shippingCost ? `৳ ${shippingCost}` : "None"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-6 py-6 border-t-2">
+                    <h4 className="font-semibold text-xl">Total:</h4>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xl mx-6 font-mono">৳ {total} BDT</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

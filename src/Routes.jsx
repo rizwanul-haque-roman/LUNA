@@ -13,6 +13,7 @@ import Products from "./admin/Products";
 import Login from "./admin/Login";
 import PrivateRoute from "./Private/PrivateRoute";
 import UploadProduct from "./admin/UploadProduct";
+import EditProduct from "./admin/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/UploadProduct",
         element: <UploadProduct />,
+      },
+      {
+        path: "/dashboard/editProduct/:id",
+        element: <EditProduct />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allProducts/${params.id}`),
       },
     ],
   },

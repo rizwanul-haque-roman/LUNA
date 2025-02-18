@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa";
 
 const TopSeller = () => {
   return (
-    <div className="bg-[#FDF1F5] rounded-xl mt-6">
+    <div className="bg-[#FDF1F5] rounded-xl my-6">
       <div className="p-4">
         <h1 className="text-left text-4xl font-bold mb-2">Top Seller</h1>
         <p className="text-xl font-semibold">Only A few left...</p>

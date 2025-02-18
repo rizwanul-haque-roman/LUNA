@@ -50,6 +50,7 @@ const OrderLogs = () => {
                 Customer Name
               </th>
               <th className="border border-gray-300 px-4 py-2">Phone</th>
+              <th className="border border-gray-300 px-4 py-2">Email</th>
               <th className="border border-gray-300 px-4 py-2">
                 Delivery Address
               </th>
@@ -78,6 +79,9 @@ const OrderLogs = () => {
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {order["Phone Number"]}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {order.Email}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {order.Address}

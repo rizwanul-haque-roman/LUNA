@@ -17,6 +17,7 @@ const UploadProduct = () => {
   });
 
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Handle Input Change
   const handleChange = (e) => {
@@ -30,6 +31,7 @@ const UploadProduct = () => {
 
     if (!files.length) return;
 
+    setLoading(true);
     try {
       for (const file of files) {
         const formData = new FormData();
@@ -51,6 +53,7 @@ const UploadProduct = () => {
     } catch (error) {
       Swal.fire("Error!", "Failed to upload images.", "error");
     }
+    setLoading(false);
   };
 
   // Handle Form Submission
@@ -68,22 +71,11 @@ const UploadProduct = () => {
       );
 
       if (response.status === 201) {
-        Swal.fire("Success!", "Product uploaded successfully!", "success");
-        setProduct({
-          brandName: "",
-          productTitle: "",
-          price: "",
-          category: "",
-          subcategory: "",
-          sub_subcategory: "",
-          status: "",
-          stock: "",
-          productDescription: "",
-          thumbnailUrl: [],
-        });
-
-        console.log(product);
-        setImages([]);
+        Swal.fire("Success!", "Product uploaded successfully!", "success").then(
+          () => {
+            window.location.reload();
+          }
+        );
       }
     } catch (error) {
       Swal.fire("Error!", "Failed to upload product!", "error");
@@ -91,10 +83,8 @@ const UploadProduct = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">
-        Upload New Product
-      </h2>
+    <div className="container mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-4">Upload New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Title */}
         <input
@@ -205,6 +195,13 @@ const UploadProduct = () => {
           onChange={handleImageUpload}
           className="w-full p-2 border rounded"
         />
+
+        {loading && (
+          <p className="text-blue-500 flex justify-center items-center gap-6">
+            Uploading images please wait{" "}
+            <span className="loading loading-dots loading-lg"></span>
+          </p>
+        )}
 
         {/* Display Uploaded Images */}
         <div className="flex flex-wrap gap-2">
