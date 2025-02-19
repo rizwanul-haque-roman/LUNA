@@ -12,7 +12,9 @@ const AdminHome = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/orderLogs");
+        const response = await axios.get(
+          "https://luna-server.vercel.app/orderLogs"
+        );
         const ordersData = response.data;
 
         // Calculations

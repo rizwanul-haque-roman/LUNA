@@ -100,9 +100,8 @@ const Cart = () => {
     setLoader(true);
     // Send the order data
     axios
-      .post("http://localhost:5000/orders", orderInfo)
+      .post("https://luna-server.vercel.app/orders", orderInfo)
       .then((res) => {
-        console.log(res.data);
         if (res.data.acknowledged === true) {
           setLoader(false);
           Swal.fire({
@@ -131,8 +130,6 @@ const Cart = () => {
           icon: "error",
         });
       });
-
-    console.log("Order Data Submitted:", orderInfo);
   };
 
   return (

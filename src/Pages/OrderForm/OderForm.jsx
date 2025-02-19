@@ -25,7 +25,6 @@ function OrderForm() {
       : setShippingArea("Outside Dhaka");
   }, []);
 
-  console.log("This is inside the for:", product);
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -51,9 +50,8 @@ function OrderForm() {
     // Send the order data
     setLoader(true);
     axios
-      .post("http://localhost:5000/orders", orderInfo)
+      .post("https://luna-server.vercel.app/orders", orderInfo)
       .then((res) => {
-        console.log(res.data);
         if (res.data.acknowledged === true) {
           setLoader(false);
           Swal.fire({
@@ -74,8 +72,7 @@ function OrderForm() {
         });
       });
 
-    // Now you can use orderInfo, e.g., send it to your server or process it further.
-    console.log("Order submitted:", orderInfo);
+    // Now you can use orderInfo, e.g., send it to your server or process it further
   };
 
   return (

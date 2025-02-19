@@ -34,7 +34,6 @@ const Details = () => {
   if (product) {
     loading = false;
   }
-  console.log(product);
 
   const success = () =>
     toast.success("Added to cart", {

@@ -66,7 +66,7 @@ const UploadProduct = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/uploadProduct",
+        "https://luna-server.vercel.app/uploadProduct",
         product
       );
 

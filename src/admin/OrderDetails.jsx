@@ -13,13 +13,13 @@ const OrderDetails = () => {
     try {
       setLoader(true);
       const { data } = await axios.put(
-        `http://localhost:5000/updateOrder/${order._id}`,
+        `https://luna-server.vercel.app/updateOrder/${order._id}`,
         { status: newStatus }, // Sending status in the request body
         { headers: { "Content-Type": "application/json" } }
       );
       setLoader(false);
 
-      console.log("This is inside axios response:", data);
+      "This is inside axios response:", data;
 
       // Update the status in state
       setStatus(newStatus);

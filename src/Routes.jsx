@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <Details />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allProducts/${params.id}`),
+          fetch(`https://luna-server.vercel.app/allProducts/${params.id}`),
       },
       {
         path: "/order",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         path: "/dashboard/trackOrders/details/:id",
         element: <OrderDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/order/${params.id}`),
+          fetch(`https://luna-server.vercel.app/order/${params.id}`),
       },
       {
         path: "/dashboard/orderLogs",
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         path: "/dashboard/editProduct/:id",
         element: <EditProduct />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allProducts/${params.id}`),
+          fetch(`https://luna-server.vercel.app/allProducts/${params.id}`),
       },
     ],
   },

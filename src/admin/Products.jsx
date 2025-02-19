@@ -9,7 +9,9 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/allProducts"); // Replace with your API endpoint
+        const response = await axios.get(
+          "https://luna-server.vercel.app/allProducts"
+        ); // Replace with your API endpoint
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -18,8 +20,6 @@ const Products = () => {
 
     fetchProducts();
   }, []);
-
-  console.log(products);
 
   return (
     <div className="overflow-y-auto max-h-[80dvh]">

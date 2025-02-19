@@ -11,13 +11,11 @@ const Product = ({ cart, setCart }) => {
 
   useEffect(() => {
     setLoader(true);
-    axios.get(`http://localhost:5000/allProducts`).then((res) => {
+    axios.get(`https://luna-server.vercel.app/allProducts`).then((res) => {
       setAllProducts(res.data);
       setLoader(false);
     });
   }, []);
-
-  console.log(allProducts);
 
   return (
     <div>

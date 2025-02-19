@@ -10,7 +10,9 @@ const OrderLogs = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/orderLogs"); // Fetch from orders collection
+        const response = await axios.get(
+          "https://luna-server.vercel.app/orderLogs"
+        ); // Fetch from orders collection
         setOrders(response.data);
         setLoading(false);
       } catch (err) {
@@ -34,8 +36,6 @@ const OrderLogs = () => {
   const filteredOrders = orders.filter(
     (order) => order.status === "approved" || order.status === "cancelled"
   );
-
-  console.log(filteredOrders);
 
   return (
     <div className="p-6">

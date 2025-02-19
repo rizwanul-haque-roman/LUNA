@@ -18,8 +18,6 @@ const EditProduct = () => {
     loading = false;
   }
 
-  console.log(product);
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -43,10 +41,9 @@ const EditProduct = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/updateProduct/${product._id}`,
+        `https://luna-server.vercel.app/updateProduct/${product._id}`,
         formData
       );
-      console.log(response.data);
       Swal.fire("Product updated successfully!");
       navigate("/dashboard/products");
     } catch (error) {
@@ -59,7 +56,7 @@ const EditProduct = () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await axios.delete(
-          `http://localhost:5000/deleteProduct/${product._id}`
+          `https://luna-server.vercel.app/deleteProduct/${product._id}`
         );
         alert("Product deleted successfully!");
         navigate("/dashboard/products");

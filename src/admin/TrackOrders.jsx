@@ -11,7 +11,9 @@ const TrackOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/allOrders");
+        const response = await axios.get(
+          "https://luna-server.vercel.app/allOrders"
+        );
         setOrders(response.data);
         setLoading(false);
       } catch (err) {
@@ -30,7 +32,6 @@ const TrackOrders = () => {
   if (error) {
     return <div>{error}</div>;
   }
-  console.log(orders);
   return (
     <div>
       <div>
