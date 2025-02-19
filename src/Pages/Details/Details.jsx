@@ -1,8 +1,9 @@
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { PiMedal } from "react-icons/pi";
 import { BsCashCoin } from "react-icons/bs";
+import { toast } from "react-toastify";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -16,12 +17,62 @@ import { FreeMode, Thumbs } from "swiper/modules";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Details = () => {
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    // Save cart to localStorage every time it changes
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cartlen", JSON.stringify(cart.length));
+    window.dispatchEvent(new Event("storage"));
+  }, [cart]);
+
   const product = useLoaderData();
   let loading = true;
   if (product) {
     loading = false;
   }
   console.log(product);
+
+  const success = () =>
+    toast.success("Added to cart", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const err = () =>
+    toast.error("Already in cart", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const addToCart = () => {
+    setCart((prevCart) => {
+      const isProductInCart = prevCart.some((item) => item._id === product._id);
+      if (!isProductInCart) {
+        success();
+        return [...prevCart, product];
+      } else {
+        err();
+        return prevCart;
+      }
+    });
+  };
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="w-11/12 lg:container mx-auto mb-6">
@@ -95,7 +146,10 @@ const Details = () => {
                 ৳ {product.price} BDT
               </p>
               <div className="flex gap-6">
-                <button className="btn lg:btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg">
+                <button
+                  onClick={addToCart}
+                  className="btn lg:btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg"
+                >
                   Add to cart
                 </button>
                 <Link

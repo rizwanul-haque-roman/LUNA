@@ -277,7 +277,6 @@ const Cart = () => {
                         type="email"
                         placeholder="type your email"
                         name="email"
-                        required
                         className="bg-transparent w-full py-4 pl-1 border-2 rounded-lg"
                       />
                     </label>

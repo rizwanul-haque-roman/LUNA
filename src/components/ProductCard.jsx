@@ -83,7 +83,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
         {isInStock ? (
           <>
             <button
-              className="mt-3 w-1/2 btn btn-sm bg-[#F0729F] text-white"
+              className="mt-3 w-1/2 btn btn-sm btn-outline hover:bg-[#f54b87] hover:border-[#f54b87]"
               onClick={addToCart}
               disabled={!productData}
             >
@@ -94,7 +94,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
               to={{ pathname: "/order" }}
               state={{ product: productData }}
             >
-              <p className="mt-3 w-full btn btn-sm bg-[#F0729F] text-white">
+              <p className="mt-3 w-full btn btn-sm bg-[#F0729F] hover:bg-[#f54b87] text-white">
                 BUY NOW
               </p>
             </Link>
