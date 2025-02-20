@@ -142,7 +142,7 @@ const Cart = () => {
         </>
       ) : (
         <>
-          <div className="w-11/12 lg:container mx-auto">
+          <div className="w-11/12 xl:container mx-auto">
             <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
               <h2 className="text-3xl lg:text-4xl font-bold">My Cart</h2>
               <p className="font-semibold text-xl">{cartLen} Items</p>
@@ -233,7 +233,7 @@ const Cart = () => {
                   you.
                 </p>
               </div>
-              <div className="mt-12 gap-12 flex justify-center">
+              <div className="mt-12 gap-12 flex flex-col-reverse lg:flex-row justify-center">
                 <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
                   <div className="">
                     <label className="form-control w-full">

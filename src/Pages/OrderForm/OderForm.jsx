@@ -85,7 +85,7 @@ function OrderForm() {
         </>
       ) : (
         <>
-          <div className="min-h-screen pt-4 lg:pt-12 w-11/12 lg:container mx-auto">
+          <div className="min-h-screen pt-4 lg:pt-12 w-11/12 xl:container mx-auto">
             <div>
               <h1 className="text-5xl font-bold">Order Form</h1>
               <p className="lg:w-3/4 mt-6 text-xl">
@@ -93,7 +93,7 @@ function OrderForm() {
                 you.
               </p>
             </div>
-            <div className="mt-4 ;g:mt-12 gap-12 flex flex-col lg:flex-row justify-center">
+            <div className="mt-4 ;g:mt-12 gap-12 flex flex-col-reverse lg:flex-row justify-center">
               <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
                 <div className="my-6 border-b-2">
                   <h3 className="font-semi text-2xl pb-4">

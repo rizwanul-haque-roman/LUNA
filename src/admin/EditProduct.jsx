@@ -68,7 +68,7 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="w-11/12 lg:container mx-auto mb-6">
+    <div className="w-11/12 xl:container mx-auto mb-6">
       {loading ? (
         "loading..."
       ) : (

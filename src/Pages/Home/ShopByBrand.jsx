@@ -19,7 +19,7 @@ const ShopByBrand = () => {
             "--swiper-navigation-color": "#fff",
             "--swiper-pagination-color": "#fff",
           }}
-          slidesPerView={3}
+          slidesPerView={2}
           spaceBetween={30}
           navigation={true}
           modules={[Navigation, Autoplay]}
@@ -28,6 +28,24 @@ const ShopByBrand = () => {
             disableOnInteraction: false,
           }}
           speed={800}
+          breakpoints={{
+            // When window width is >= 640px (sm)
+            640: {
+              slidesPerView: 2,
+            },
+            // When window width is >= 768px (md)
+            768: {
+              slidesPerView: 2,
+            },
+            // When window width is >= 1024px (lg)
+            1024: {
+              slidesPerView: 3,
+            },
+            // When window width is >= 1280px (xl)
+            1280: {
+              slidesPerView: 4,
+            },
+          }}
           className="mySwiper"
         >
           <SwiperSlide>

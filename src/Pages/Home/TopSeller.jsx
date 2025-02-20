@@ -18,7 +18,7 @@ const TopSeller = ({ cart, setCart }) => {
     const fetchTopSellingProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/topSellingProducts"
+          "https://luna-server.vercel.app/topSellingProducts"
         ); // Replace with your API endpoint
 
         // Validate if the response data is an array
@@ -62,7 +62,7 @@ const TopSeller = ({ cart, setCart }) => {
               "--swiper-navigation-color": "#fff",
               "--swiper-pagination-color": "#fff",
             }}
-            slidesPerView={3}
+            slidesPerView={1}
             spaceBetween={30}
             navigation={true}
             modules={[Navigation, Autoplay]}
@@ -71,6 +71,24 @@ const TopSeller = ({ cart, setCart }) => {
               disableOnInteraction: false,
             }}
             speed={800}
+            breakpoints={{
+              // When window width is >= 640px (sm)
+              640: {
+                slidesPerView: 2,
+              },
+              // When window width is >= 768px (md)
+              768: {
+                slidesPerView: 2,
+              },
+              // When window width is >= 1024px (lg)
+              1024: {
+                slidesPerView: 3,
+              },
+              // When window width is >= 1280px (xl)
+              1280: {
+                slidesPerView: 4,
+              },
+            }}
             className="mySwiper"
           >
             {topSellingProducts.map((product) => (
