@@ -35,9 +35,9 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#FDF1F5]">
-      <div className="p-8 h-[100dvh] flex flex-col md:flex-row">
+      <div className="p-8 h-[100dvh] flex flex-col md:flex-row overflow-hidden">
         <button
-          className="md:hidden bg-clr-main text-black p-2 m-4 rounded-md"
+          className="md:hidden text-black p-2 mb-4 rounded-md"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           {isSidebarOpen ? <RxCross2 /> : <RxHamburgerMenu />}
@@ -45,7 +45,7 @@ const Dashboard = () => {
         <div
           className={`fixed inset-y-0 left-0 transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } md:relative md:translate-x-0 transition-transform duration-200 ease-in-out w-64 md:w-80 bg-white rounded-xl p-10 z-50`}
+          } md:relative md:translate-x-0 transition-transform duration-200 ease-in-out w-64 md:w-80 bg-white rounded-xl p-10 z-50 overflow-y-auto`}
         >
           <ul className="text-xl space-y-6 font-medium text-white">
             <div className="flex gap-3 items-center text-[#F0729F]">
@@ -140,9 +140,9 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-        <div className="flex-1 p-6 lg:p-8 rounded-xl lg:ml-8 bg-white">
+        <div className="flex-1 p-6 lg:p-8 rounded-xl lg:ml-8 bg-white overflow-y-auto">
           {path === "/dashboard" && (
-            <div className="text-3xl lg:text-7xl font-bold h-[80vh] text-center flex justify-center items-center text-[#F0729F]">
+            <div className="text-3xl lg:text-7xl font-bold h-full text-center flex justify-center items-center text-[#F0729F]">
               <p>Welcome to Dashboard</p>
             </div>
           )}

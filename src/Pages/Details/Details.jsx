@@ -2,8 +2,7 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { PiMedal } from "react-icons/pi";
 import { BsCashCoin } from "react-icons/bs";
 import { toast } from "react-toastify";
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -74,7 +73,7 @@ const Details = () => {
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div className="w-11/12 lg:container mx-auto mb-6">
+    <div className="w-11/12 xl:container mx-auto mb-6">
       {loading ? (
         "loading..."
       ) : (
@@ -88,13 +87,13 @@ const Details = () => {
             </ul>
           </div>
           <div className="flex flex-col lg:flex-row gap-16">
-            <div className="w-auto lg:w-[500px]">
+            <div className="w-auto lg:w-[35%]">
               <div>
                 <Swiper
                   loop={true}
                   spaceBetween={10}
-                  navigation={true}
-                  thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
+                  // navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
                   modules={[FreeMode, Thumbs]}
                   className="mySwiper2"
                 >

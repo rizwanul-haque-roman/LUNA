@@ -1,11 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
-import { CiHeart } from "react-icons/ci";
 import { PiHandbagSimpleThin } from "react-icons/pi";
-import { CiUser } from "react-icons/ci";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [cartLen, setCartLen] = useState(0);
+  const [dropdown, setDropdown] = useState(false);
+  const [navdropdown, setNavDropdown] = useState(false);
+
+  const handleDropdown = () => {
+    setDropdown(!dropdown);
+  };
+  const handleNavDopdown = () => {
+    setNavDropdown(!navdropdown);
+  };
 
   // Update cart length from localStorage
   const updateCartLen = () => {
@@ -59,11 +66,16 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="shadow-lg">
-      <div className="navbar container mx-auto">
+    <div>
+      <div className="navbar w-11/12 xl:container mx-auto">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div onClick={handleNavDopdown} className="dropdown z-10">
+            <div
+              onClick={handleDropdown}
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost xl:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -79,18 +91,24 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              {links}
-            </ul>
+            {navdropdown && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                {links}
+              </ul>
+            )}
           </div>
           <a className="text-xl" href="/">
-            <img className="w-[150px]" src="/logo_transparent.png" alt="" />
+            <img
+              className="w-[15dvw] lg:w-[10dvw]"
+              src="/logo_transparent.png"
+              alt=""
+            />
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden xl:flex">
           <ul className="menu menu-horizontal px-1 justify-center items-center gap-8 text-[14px] font-medium">
             {links}
             <label className="input input-bordered rounded-full flex items-center gap-2">
@@ -112,7 +130,6 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex justify-center items-center gap-8">
-            <CiHeart size={30} />
             <Link to={"/cart"}>
               <p className="flex gap-22">
                 <PiHandbagSimpleThin size={30} />
@@ -120,7 +137,6 @@ const Navbar = () => {
                 {cartLen}
               </p>
             </Link>
-            <CiUser size={30} />
           </div>
         </div>
       </div>

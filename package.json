@@ -25,7 +25,8 @@
     "sort-by": "^1.2.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.15.2",
-    "swiper": "^11.1.14"
+    "swiper": "^11.2.4",
+    "swiper-react": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

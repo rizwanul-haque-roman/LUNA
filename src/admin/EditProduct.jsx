@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 import { FreeMode, Thumbs } from "swiper/modules";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -74,14 +74,14 @@ const EditProduct = () => {
       ) : (
         <>
           <h3 className="text-2xl font-bold mb-4">Edit Product</h3>
-          <div className="flex flex-col lg:flex-row gap-16">
-            <div className="w-auto lg:w-[500px]">
+          <div className="flex flex-col xl:flex-row gap-8">
+            <div className="w-auto xl:w-[50%]">
               <div>
                 <Swiper
                   loop={true}
                   spaceBetween={10}
-                  navigation={true}
-                  thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
+                  // navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
                   modules={[FreeMode, Thumbs]}
                   className="mySwiper2"
                 >
@@ -153,89 +153,105 @@ const EditProduct = () => {
                 className="w-full mb-4 p-2 border rounded"
               />
 
-              <label htmlFor="Price" className="text-sm font-semibold">
-                Price
-              </label>
-              <input
-                type="number"
-                name="price"
-                placeholder="Price"
-                value={formData.price}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              />
-
-              <label htmlFor="category" className="text-sm font-semibold">
-                Category
-              </label>
-              <input
-                type="text"
-                name="category"
-                placeholder="Category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              />
-
-              <label htmlFor="subcategory" className="text-sm font-semibold">
-                Subcategory
-              </label>
-              <input
-                type="text"
-                name="subcategory"
-                placeholder="Subcategory"
-                value={formData.subcategory}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              />
-
-              <label
-                htmlFor="sub_subcategory"
-                className="text-sm font-semibold"
-              >
-                Sub Subcategory
-              </label>
-              <input
-                type="text"
-                name="sub_subcategory"
-                placeholder="Sub Subcategory"
-                value={formData.sub_subcategory}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              />
-
-              <label htmlFor="status" className="text-sm font-semibold">
-                Status
-              </label>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              >
-                <option value="">Select Status</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="new">New</option>
-                <option value="discounted">Discounted</option>
-              </select>
-
-              <label htmlFor="stock" className="text-sm font-semibold">
-                Stock
-              </label>
-              <input
-                type="number"
-                name="stock"
-                placeholder="Stock"
-                value={formData.stock}
-                onChange={handleChange}
-                required
-                className="w-full mb-4 p-2 border rounded"
-              />
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label htmlFor="Price" className="text-sm font-semibold">
+                    Price
+                  </label>
+                  <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    value={formData.price}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  />
+                </div>
+                <div className="w-full">
+                  <label htmlFor="category" className="text-sm font-semibold">
+                    Category
+                  </label>
+                  <input
+                    type="text"
+                    name="category"
+                    placeholder="Category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label
+                    htmlFor="subcategory"
+                    className="text-sm font-semibold"
+                  >
+                    Subcategory
+                  </label>
+                  <input
+                    type="text"
+                    name="subcategory"
+                    placeholder="Subcategory"
+                    value={formData.subcategory}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  />
+                </div>
+                <div className="w-full">
+                  <label
+                    htmlFor="sub_subcategory"
+                    className="text-sm font-semibold"
+                  >
+                    Sub Subcategory
+                  </label>
+                  <input
+                    type="text"
+                    name="sub_subcategory"
+                    placeholder="Sub Subcategory"
+                    value={formData.sub_subcategory}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label htmlFor="status" className="text-sm font-semibold">
+                    Status
+                  </label>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  >
+                    <option value="">Select Status</option>
+                    <option value="top-selling">Top-selling</option>
+                    <option value="new">New</option>
+                    <option value="discounted">Discounted</option>
+                  </select>
+                </div>
+                <div className="w-full">
+                  <label htmlFor="stock" className="text-sm font-semibold">
+                    Stock
+                  </label>
+                  <input
+                    type="number"
+                    name="stock"
+                    placeholder="Stock"
+                    value={formData.stock}
+                    onChange={handleChange}
+                    required
+                    className="w-full mb-4 p-2 border rounded"
+                  />
+                </div>
+              </div>
 
               <label
                 htmlFor="productDescription"

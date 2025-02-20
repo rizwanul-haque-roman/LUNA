@@ -73,38 +73,40 @@ const AdminHome = () => {
   }, []);
 
   return (
-    <div className="p-6">
-      <div className="grid lg:grid-cols-2 gap-8">
-        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+    <div className="p-6 overflow-hidden">
+      <div className="grid xl:grid-cols-2 gap-8">
+        <div className="bg-[#E6E6FA] px-4 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Total Income</h3>
-          <p className="text-2xl lg:text-6xl py-4 font-bold">
+          <p className="text-2xl lg:text-4xl font-mono font-bold">
             ৳ {totalIncome.toFixed(2)} BDT
           </p>
         </div>
-        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+        <div className="bg-[#E6E6FA] px-4 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Monthly Income</h3>
-          <p className="text-2xl lg:text-6xl py-4 font-bold">
+          <p className="text-2xl lg:text-4xl font-mono font-bold">
             ৳ {monthlyIncome.toFixed(2)} BDT
           </p>
         </div>
       </div>
       <div className="grid lg:grid-cols-2 gap-8 mt-8">
-        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+        <div className="bg-[#E6E6FA] flex flex-col justify-between items-center px-4 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Total Completed Orders</h3>
-          <p className="text-2xl lg:text-6xl py-4 font-bold">
+          <p className="text-2xl lg:text-6xl py-4 font-mono font-bold">
             {totalCompletedOrders}
           </p>
         </div>
-        <div className="bg-[#E6E6FA] px-8 py-4 rounded-lg text-center">
+        <div className="bg-[#E6E6FA] flex flex-col justify-between items-center px-4 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Pending Orders</h3>
-          <p className="text-2xl lg:text-6xl py-4 font-bold">{pendingOrders}</p>
+          <p className="text-2xl lg:text-6xl py-4 font-mono font-bold">
+            {pendingOrders}
+          </p>
         </div>
       </div>
 
       {/* Table for Last 6 Orders */}
-      <div className="mt-8">
+      <div className="mt-8 overflow-x-auto">
         <h2 className="font-semibold text-2xl">Last 10 Orders</h2>
-        <div className="overflow-x-auto mt-4">
+        <div className="mt-4">
           <table className="table table-sm text-base w-full border border-gray-300">
             <thead>
               <tr className="bg-gray-200 text-black font-bold text-base">
@@ -162,7 +164,6 @@ const AdminHome = () => {
                           : order.status === "pending"
                           ? "badge-warning"
                           : ""
-                      }
                       }`}
                     >
                       {order.status}

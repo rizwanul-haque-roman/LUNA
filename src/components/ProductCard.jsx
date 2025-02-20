@@ -55,7 +55,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
   const isInStock = stock > 0;
 
   return (
-    <div className="min-w-[300px] border p-3 rounded-xl flex flex-col justify-between">
+    <div className="w-full border p-3 rounded-xl flex flex-col justify-between">
       <div>
         {productData ? (
           <Link to={`/details/${id}`}>

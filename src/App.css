@@ -1,0 +1,13 @@
+/* Hide navigation arrows by default */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+}
+
+/* Show navigation arrows on desktop screens */
+@media (min-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: block;
+  }
+}

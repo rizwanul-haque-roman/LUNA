@@ -1,18 +1,29 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 const Banner = () => {
   return (
     <div className="">
       <Swiper
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-pagination-color": "#fff",
+        }}
+        loop={true}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
-        speed={800}
+        navigation={true}
+        modules={[Pagination, Navigation, Autoplay]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        speed={2000}
         className="mySwiper"
       >
         <SwiperSlide>
@@ -31,4 +42,3 @@ const Banner = () => {
 };
 
 export default Banner;
-<h1>This is banner</h1>;
