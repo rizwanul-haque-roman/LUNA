@@ -85,7 +85,7 @@ function OrderForm() {
         </>
       ) : (
         <>
-          <div className="min-h-screen pt-4 lg:pt-12 w-11/12 xl:container mx-auto">
+          <div className="min-h-screen pt-4 lg:pt-12 w-11/12 max-w-screen-xl mx-auto">
             <div>
               <h1 className="text-5xl font-bold">Order Form</h1>
               <p className="lg:w-3/4 mt-6 text-xl">

@@ -142,7 +142,7 @@ const Cart = () => {
         </>
       ) : (
         <>
-          <div className="w-11/12 xl:container mx-auto">
+          <div className="w-11/12 max-w-screen-xl mx-auto">
             <div className="flex justify-between items-center my-6 pb-6 border-b-2 border-[#DF8281]">
               <h2 className="text-3xl lg:text-4xl font-bold">My Cart</h2>
               <p className="font-semibold text-xl">{cartLen} Items</p>

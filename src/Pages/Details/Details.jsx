@@ -73,7 +73,7 @@ const Details = () => {
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div className="w-11/12 xl:container mx-auto mb-6">
+    <div className="w-11/12 max-w-screen-xl mx-auto mb-6">
       {loading ? (
         "loading..."
       ) : (

@@ -17,8 +17,9 @@ const Home = () => {
     localStorage.setItem("cartlen", JSON.stringify(cart.length));
     window.dispatchEvent(new Event("storage"));
   }, [cart]);
+
   return (
-    <div className="w-11/12 xl:container mx-auto">
+    <div className="w-11/12 max-w-screen-xl mx-auto">
       <div className="mt-6">
         <Banner />
         <ShopByCategory />

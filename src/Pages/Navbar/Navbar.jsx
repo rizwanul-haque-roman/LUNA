@@ -14,7 +14,6 @@ const Navbar = () => {
     setNavDropdown(!navdropdown);
   };
 
-  // Update cart length from localStorage
   const updateCartLen = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartLen(cart.length);
@@ -22,10 +21,8 @@ const Navbar = () => {
 
   // Initial load and listen for changes
   useEffect(() => {
-    // Set initial cart length
     updateCartLen();
 
-    // Listen for storage changes (when the cart is updated elsewhere)
     const handleStorageChange = () => {
       updateCartLen();
     };
@@ -38,6 +35,11 @@ const Navbar = () => {
 
   const links = (
     <>
+      <li>
+        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+          HOME
+        </NavLink>
+      </li>
       <li>
         <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
           NEW & NOW
@@ -66,15 +68,15 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar w-11/12 xl:container mx-auto">
+    <div className="w-11/12 max-w-screen-xl mx-auto">
+      <div className="navbar">
         <div className="navbar-start">
           <div onClick={handleNavDopdown} className="dropdown z-10">
             <div
               onClick={handleDropdown}
               tabIndex={0}
               role="button"
-              className="btn btn-ghost xl:hidden"
+              className="btn btn-ghost lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,22 +96,18 @@ const Navbar = () => {
             {navdropdown && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm border border-[#fcbad0] dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 {links}
               </ul>
             )}
           </div>
           <a className="text-xl" href="/">
-            <img
-              className="w-[15dvw] lg:w-[10dvw]"
-              src="/logo_transparent.png"
-              alt=""
-            />
+            <img className="w-[80px]" src="/logo_transparent.png" alt="" />
           </a>
         </div>
-        <div className="navbar-center hidden xl:flex">
-          <ul className="menu menu-horizontal px-1 justify-center items-center gap-8 text-[14px] font-medium">
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 justify-center items-center gap-4 text-[14px] font-medium">
             {links}
             <label className="input input-bordered rounded-full flex items-center gap-2">
               <input type="text" className="grow" placeholder="Search" />
