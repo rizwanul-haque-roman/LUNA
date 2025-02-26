@@ -42,8 +42,8 @@ const HijabAndAbaya = () => {
         </ul>
       </div>
       <div className="flex justify-between items-center">
-        <h3 className="text-3xl lg:text-4xl font-bold">
-          Hijab And Abaya{" "}
+        <h3 className="text-2xl lg:text-4xl font-bold">
+          Hijab & Abaya{" "}
           <span className="text-2xl font-medium">
             <sup>{abaya.length} Products</sup>
           </span>
