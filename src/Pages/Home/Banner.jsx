@@ -6,7 +6,7 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 const Banner = () => {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
@@ -27,13 +27,30 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div>
-            <img className="w-full" src="/banner.webp" alt="" />
+          <div className="w-full h-[43dvh]">
+            <img
+              className="w-full h-full object-cover rounded-3xl"
+              src="/banner.webp"
+              alt="Banner 1"
+            />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div>
-            <img className="w-full" src="/banner-2.webp" alt="" />
+          <div className="w-full h-[43dvh]">
+            <img
+              className="w-full h-full object-cover rounded-3xl"
+              src="/banner-2.webp"
+              alt="Banner 2"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="w-full h-[43dvh]">
+            <img
+              className="w-full h-full object-cover rounded-3xl"
+              src="/banner-3.jpg"
+              alt="Banner 2"
+            />
           </div>
         </SwiperSlide>
       </Swiper>

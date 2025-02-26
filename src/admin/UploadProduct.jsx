@@ -161,7 +161,7 @@ const UploadProduct = () => {
           className="w-full p-2 border rounded"
         >
           <option value="">Select Status</option>
-          <option value="best-selling">Best Selling</option>
+          <option value="top-selling">Top Selling</option>
           <option value="new">New</option>
           <option value="discounted">Discounted</option>
         </select>

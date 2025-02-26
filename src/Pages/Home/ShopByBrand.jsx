@@ -11,7 +11,7 @@ const ShopByBrand = () => {
   return (
     <div className="mt-4 lg:mt-16">
       <h1 className="text-center text-2xl lg:text-4xl font-bold">
-        SHOP BY BRANDS
+        POPULAR BRANDS
       </h1>
       <div className="mt-4 lg:mt-16">
         <Swiper
@@ -29,19 +29,15 @@ const ShopByBrand = () => {
           }}
           speed={800}
           breakpoints={{
-            // When window width is >= 640px (sm)
             640: {
               slidesPerView: 2,
             },
-            // When window width is >= 768px (md)
             768: {
               slidesPerView: 2,
             },
-            // When window width is >= 1024px (lg)
             1024: {
               slidesPerView: 3,
             },
-            // When window width is >= 1280px (xl)
             1280: {
               slidesPerView: 4,
             },

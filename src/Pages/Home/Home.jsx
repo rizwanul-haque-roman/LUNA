@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto">
-      <div className="mt-6">
+      <div className="">
         <Banner />
         <ShopByCategory />
         <ShopByBrand />

@@ -2,7 +2,7 @@ const ShopByCategory = () => {
   return (
     <div className="mt-4 lg:mt-16">
       <h1 className="text-center text-2xl lg:text-4xl font-bold">
-        SHOP BY CATEGORY
+        POPULAR CATEGORIES
       </h1>
       <div className="grid grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center mt-4 lg:mt-16">
         <a href="#">

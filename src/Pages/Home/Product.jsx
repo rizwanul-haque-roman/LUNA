@@ -26,10 +26,10 @@ const Product = ({ cart, setCart }) => {
             <HiOutlineArrowsUpDown size={25} />
             <p>Sort By</p>
           </div>
-          <div className="flex gap-4 justify-center items-center">
+          {/* <div className="flex gap-4 justify-center items-center">
             <IoFilterOutline size={25} />
             <p>Filter</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-12">

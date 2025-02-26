@@ -41,12 +41,10 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
-          NEW & NOW
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+        <NavLink
+          to="/makeup"
+          className={({ isActive }) => (isActive ? "" : "")}
+        >
           MAKEUP
         </NavLink>
       </li>
@@ -57,18 +55,18 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
-          CLEARANCE
+          DRESSES
         </NavLink>
       </li>
       <li>
         <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
-          HAIR
+          HIJAB & ABAYA
         </NavLink>
       </li>
     </>
   );
   return (
-    <div className="w-11/12 max-w-screen-xl mx-auto">
+    <div className="w-11/12 max-w-screen-xl mb-6 mx-auto">
       <div className="navbar">
         <div className="navbar-start">
           <div onClick={handleNavDopdown} className="dropdown z-10">

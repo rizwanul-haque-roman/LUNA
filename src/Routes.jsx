@@ -14,6 +14,7 @@ import Login from "./admin/Login";
 import PrivateRoute from "./Private/PrivateRoute";
 import UploadProduct from "./admin/UploadProduct";
 import EditProduct from "./admin/EditProduct";
+import Makeup from "./Categories/Makeup";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/makeup",
+        element: <Makeup />,
       },
       {
         path: "/details/:id",
