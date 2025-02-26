@@ -27,7 +27,7 @@ const Skincare = () => {
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img className="w-full" src="/skincare.jpg" alt="Banner 2" />
       </div>
-      <div className="breadcrumbs text-xl font-semibold my-12">
+      <div className="breadcrumbs text-xl font-semibold my-4 lg:my-12">
         <ul>
           <li>
             <Link to="/">Home</Link>

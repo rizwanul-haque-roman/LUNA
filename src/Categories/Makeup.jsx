@@ -32,7 +32,7 @@ const Makeup = () => {
           alt="Banner 2"
         />
       </div>
-      <div className="breadcrumbs text-xl font-semibold my-12">
+      <div className="breadcrumbs text-xl font-semibold my-4 lg:my-12">
         <ul>
           <li>
             <Link to="/">Home</Link>
