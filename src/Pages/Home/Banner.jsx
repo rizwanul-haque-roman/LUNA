@@ -27,7 +27,7 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="w-full h-[43dvh]">
+          <div className="w-full h-[20vh] lg:h-[43dvh]">
             <img
               className="w-full h-full object-cover rounded-3xl"
               src="/banner.webp"
@@ -36,7 +36,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-[43dvh]">
+          <div className="w-full h-[20vh] lg:h-[43dvh]">
             <img
               className="w-full h-full object-cover rounded-3xl"
               src="/banner-2.webp"
@@ -45,7 +45,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-[43dvh]">
+          <div className="w-full h-[20vh] lg:h-[43dvh]">
             <img
               className="w-full h-full object-cover rounded-3xl"
               src="/banner-3.jpg"

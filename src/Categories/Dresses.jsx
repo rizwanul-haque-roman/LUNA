@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineArrowsUpDown } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { toast } from "react-toastify";
 
-const Makeup = () => {
-  const [makeupProducts, setMakeupProducts] = useState([]);
+const Dresses = () => {
+  const [dresses, setDresses] = useState([]);
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -19,8 +18,8 @@ const Makeup = () => {
   }, [cart]);
 
   useEffect(() => {
-    axios.get(`https://luna-server.vercel.app/makeupProducts`).then((res) => {
-      setMakeupProducts(res.data);
+    axios.get(`https://luna-server.vercel.app/dresses`).then((res) => {
+      setDresses(res.data);
     });
   }, []);
   return (
@@ -28,7 +27,7 @@ const Makeup = () => {
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img
           className="w-full h-full object-cover"
-          src="/makeup.jpg"
+          src="/dresses.jpg"
           alt="Banner 2"
         />
       </div>
@@ -38,15 +37,15 @@ const Makeup = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to={"/makeup"}>Makeup</Link>
+            <Link to={"/dresses"}>Dresses</Link>
           </li>
         </ul>
       </div>
       <div className="flex justify-between items-center">
         <h3 className="text-3xl lg:text-4xl font-bold">
-          Makeup{" "}
+          Dresses{" "}
           <span className="text-2xl font-medium">
-            <sup>{makeupProducts.length} Products</sup>
+            <sup>{dresses.length} Products</sup>
           </span>
         </h3>
         <div className="flex justify-between items-center gap-8 text-lg font-medium">
@@ -57,7 +56,7 @@ const Makeup = () => {
         </div>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-12">
-        {makeupProducts.map((product) => (
+        {dresses.map((product) => (
           <ProductCard
             key={product._id}
             productData={product}
@@ -70,4 +69,4 @@ const Makeup = () => {
   );
 };
 
-export default Makeup;
+export default Dresses;

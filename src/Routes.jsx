@@ -15,6 +15,9 @@ import PrivateRoute from "./Private/PrivateRoute";
 import UploadProduct from "./admin/UploadProduct";
 import EditProduct from "./admin/EditProduct";
 import Makeup from "./Categories/Makeup";
+import Skincare from "./Categories/Skincare";
+import Dresses from "./Categories/Dresses";
+import HijabAndAbaya from "./Categories/HijabAndAbaya";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,18 @@ const router = createBrowserRouter([
       {
         path: "/makeup",
         element: <Makeup />,
+      },
+      {
+        path: "/skincare",
+        element: <Skincare />,
+      },
+      {
+        path: "/dresses",
+        element: <Dresses />,
+      },
+      {
+        path: "/hijab&abaya",
+        element: <HijabAndAbaya />,
       },
       {
         path: "/details/:id",

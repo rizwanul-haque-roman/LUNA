@@ -36,30 +36,42 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "underline font-bold" : "")}
+        >
           HOME
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/makeup"
-          className={({ isActive }) => (isActive ? "" : "")}
+          className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
           MAKEUP
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+        <NavLink
+          to="/skincare"
+          className={({ isActive }) => (isActive ? "underline font-bold" : "")}
+        >
           SKINCARE
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+        <NavLink
+          to="/dresses"
+          className={({ isActive }) => (isActive ? "underline font-bold" : "")}
+        >
           DRESSES
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? "" : "")}>
+        <NavLink
+          to="/hijab&abaya"
+          className={({ isActive }) => (isActive ? "underline font-bold" : "")}
+        >
           HIJAB & ABAYA
         </NavLink>
       </li>
