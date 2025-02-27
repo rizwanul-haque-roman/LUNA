@@ -36,7 +36,7 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          {products.slice(0, 12).map((product, index) => (
+          {products.map((product, index) => (
             <tr key={product._id.$oid} className="border-b hover:bg-gray-50">
               <td className="py-2 px-4">{index + 1}</td>
               <td className="py-2 px-4">

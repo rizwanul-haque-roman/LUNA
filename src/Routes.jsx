@@ -18,6 +18,7 @@ import Makeup from "./Categories/Makeup";
 import Skincare from "./Categories/Skincare";
 import Dresses from "./Categories/Dresses";
 import HijabAndAbaya from "./Categories/HijabAndAbaya";
+import Subcategories from "./Categories/Subcategories";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,26 @@ const router = createBrowserRouter([
       {
         path: "/hijab&abaya",
         element: <HijabAndAbaya />,
+      },
+      {
+        path: "/nails",
+        element: <Subcategories />,
+      },
+      {
+        path: "/face",
+        element: <Subcategories />,
+      },
+      {
+        path: "/lips",
+        element: <Subcategories />,
+      },
+      {
+        path: "/eyes",
+        element: <Subcategories />,
+      },
+      {
+        path: "/tools",
+        element: <Subcategories />,
       },
       {
         path: "/details/:id",

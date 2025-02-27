@@ -55,7 +55,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
   const isInStock = stock > 0;
 
   return (
-    <div className="w-full h-[65dvh] lg:h-[50dvh] border p-3 rounded-xl flex flex-col justify-between">
+    <div className="w-full h-auto lg:h-[50dvh] border p-3 rounded-xl flex flex-col justify-between">
       <div>
         {productData ? (
           <Link to={`/details/${id}`}>
@@ -72,18 +72,18 @@ const ProductCard = ({ productData, cart, setCart }) => {
             alt="Loading..."
           />
         )}
-        <h4 className="text-sm text-[#000000aa] my-3">{brandname}</h4>
+        <h4 className="text-sm text-[#000000aa]  lg:my-3">{brandname}</h4>
         <Link className="flex-1" to={`/details/${id}`}>
           <p className="my-3">{title}</p>
         </Link>
         <p className="text-[#F0729F] text-xl font-semibold">৳ {price} BDT</p>
       </div>
 
-      <div className="flex gap-4 justify-between">
+      <div className="flex flex-col lg:flex-row lg:gap-4 justify-between">
         {isInStock ? (
           <>
             <button
-              className="mt-3 w-1/2 btn btn-sm btn-outline hover:bg-[#f54b87] hover:border-[#f54b87]"
+              className="mt-3 w-full lg:w-1/2 btn btn-sm btn-outline hover:bg-[#f54b87] hover:border-[#f54b87]"
               onClick={addToCart}
               disabled={!productData}
             >

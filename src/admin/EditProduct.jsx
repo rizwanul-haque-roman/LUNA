@@ -228,7 +228,6 @@ const EditProduct = () => {
                     name="status"
                     value={formData.status}
                     onChange={handleChange}
-                    required
                     className="w-full mb-4 p-2 border rounded"
                   >
                     <option value="">Select Status</option>
