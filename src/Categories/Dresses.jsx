@@ -55,7 +55,7 @@ const Dresses = () => {
           </div>
         </div>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-12">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-6 my-12">
         {dresses.map((product) => (
           <ProductCard
             key={product._id}
