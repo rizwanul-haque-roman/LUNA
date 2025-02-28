@@ -1,8 +1,15 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const ProductCard = ({ productData, cart, setCart }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const success = () =>
     toast.success("Added to cart", {
       position: "top-right",
@@ -55,7 +62,11 @@ const ProductCard = ({ productData, cart, setCart }) => {
   const isInStock = stock > 0;
 
   return (
-    <div className="w-full h-auto lg:h-[50dvh] border p-3 rounded-xl flex flex-col justify-between">
+    <div
+      className="w-full h-auto lg:h-[50dvh] border p-3 rounded-xl flex flex-col justify-between"
+      data-aos="zoom-in"
+      data-aos-duration="1500"
+    >
       <div>
         {productData ? (
           <Link to={`/details/${id}`}>

@@ -1,15 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "../../App.css";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import { Navigation, Autoplay } from "swiper/modules";
 
 const ShopByBrand = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="mt-4 lg:mt-16">
+    <div className="mt-4 lg:mt-16" data-aos="zoom-in" data-aos-duration="1500">
       <h1 className="text-center text-2xl lg:text-4xl font-bold">
         POPULAR BRANDS
       </h1>
