@@ -12,7 +12,7 @@ const ShopByBrand = () => {
     AOS.init();
   }, []);
   return (
-    <div className="mt-4 lg:mt-16" data-aos="zoom-in" data-aos-duration="1500">
+    <div className="mt-4 lg:mt-16" data-aos="fade-up" data-aos-duration="2000">
       <h1 className="text-center text-2xl lg:text-4xl font-bold">
         POPULAR BRANDS
       </h1>
