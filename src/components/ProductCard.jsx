@@ -111,8 +111,8 @@ const ProductCard = ({ productData, cart, setCart }) => {
             </Link>
           </>
         ) : (
-          <p className="text-center text-red-500 text-2xl font-semibold">
-            Stock Out
+          <p className="w-full text-center border bg-[#F0729F] text-white font-medium p-2 rounded-md">
+            Out of Stock
           </p>
         )}
       </div>

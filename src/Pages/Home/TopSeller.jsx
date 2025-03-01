@@ -2,51 +2,46 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../App.css";
+import "../../index.css";
 import { Navigation, Autoplay } from "swiper/modules";
-import axios from "axios"; // Import axios
+import axios from "axios";
 import ProductCard from "../../components/ProductCard";
 import PropTypes from "prop-types";
 
 const TopSeller = ({ cart, setCart }) => {
-  const [topSellingProducts, setTopSellingProducts] = useState([]); // Initialize as an empty array
-  const [loading, setLoading] = useState(true); // Add a loading state
-  const [error, setError] = useState(null); // Add an error state
+  const [topSellingProducts, setTopSellingProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch top-selling products from the API using axios
   useEffect(() => {
     const fetchTopSellingProducts = async () => {
       try {
         const response = await axios.get(
           "https://luna-server.vercel.app/topSellingProducts"
-        ); // Replace with your API endpoint
+        );
 
-        // Validate if the response data is an array
         if (Array.isArray(response.data)) {
           setTopSellingProducts(response.data);
-          console.log(response.data);
         } else {
           console.error("Expected an array but got:", response.data);
-          setTopSellingProducts([]); // Set to an empty array if the response is not an array
+          setTopSellingProducts([]);
         }
       } catch (error) {
         console.error("Error fetching top-selling products:", error);
-        setError("Failed to fetch top-selling products."); // Set error message
-        setTopSellingProducts([]); // Set to an empty array in case of an error
+        setError("Failed to fetch top-selling products.");
+        setTopSellingProducts([]);
       } finally {
-        setLoading(false); // Set loading to false after the request completes
+        setLoading(false);
       }
     };
 
     fetchTopSellingProducts();
   }, []);
 
-  // Display loading state
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Display error state
   if (error) {
     return <div>{error}</div>;
   }
@@ -72,19 +67,15 @@ const TopSeller = ({ cart, setCart }) => {
             }}
             speed={800}
             breakpoints={{
-              // When window width is >= 640px (sm)
               640: {
                 slidesPerView: 2,
               },
-              // When window width is >= 768px (md)
               768: {
                 slidesPerView: 2,
               },
-              // When window width is >= 1024px (lg)
               1024: {
                 slidesPerView: 3,
               },
-              // When window width is >= 1280px (xl)
               1280: {
                 slidesPerView: 4,
               },
