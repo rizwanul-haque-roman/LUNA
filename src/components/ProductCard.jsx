@@ -63,7 +63,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
 
   return (
     <div
-      className="w-full h-auto lg:h-[50dvh] border p-3 rounded-xl flex flex-col justify-between"
+      className="w-full h-auto border p-3 rounded-xl flex flex-col justify-between"
       data-aos="zoom-in"
       data-aos-duration="1500"
     >
