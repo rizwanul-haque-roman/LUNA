@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineArrowsUpDown } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { Helmet } from "react-helmet-async";
 
 const Dresses = () => {
   const [dresses, setDresses] = useState([]);
@@ -24,6 +25,9 @@ const Dresses = () => {
   }, []);
   return (
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
+      <Helmet>
+        <title>DRESSES</title>
+      </Helmet>
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img
           className="w-full h-full object-cover"

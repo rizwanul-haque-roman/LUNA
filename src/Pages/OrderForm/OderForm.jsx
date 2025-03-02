@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Product from "../Home/Product";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 function OrderForm() {
   const [quantity, setQuantity] = useState(1);
@@ -77,6 +78,9 @@ function OrderForm() {
 
   return (
     <div>
+      <Helmet>
+        <title>ORDER FORM</title>
+      </Helmet>
       {loader ? (
         <>
           <div className="flex justify-center items-center h-[70vh] w-full">

@@ -14,6 +14,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Thumbs } from "swiper/modules";
 import { Link, useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
   const [cart, setCart] = useState(() => {
@@ -71,11 +72,26 @@ const Details = () => {
     });
   };
 
+  const {
+    thumbnailUrl = ["thumbnail_placeholder.png"],
+    brandName: brandname,
+    productTitle: title,
+    price,
+    stock,
+    _id: id,
+  } = product || {};
+
+  // Check if stock is greater than 0
+  const isInStock = stock > 0;
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto mb-6">
+      <Helmet>
+        <title>DETAILS</title>
+      </Helmet>
       {loading ? (
-        "loading..."
+        <span className="loading loading-infinity loading-xl"></span>
       ) : (
         <>
           <div className="breadcrumbs mt-6 text-lg">
@@ -143,7 +159,7 @@ const Details = () => {
               <p className="text-2xl font-bold text-[#F0729F]">
                 ৳ {product.price} BDT
               </p>
-              <div className="flex gap-6">
+              {/* <div className="flex gap-6">
                 <button
                   onClick={addToCart}
                   className="btn lg:btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg"
@@ -160,6 +176,32 @@ const Details = () => {
                     Buy Now
                   </button>
                 </Link>
+              </div> */}
+              <div className="flex flex-col lg:flex-row lg:gap-4 justify-between">
+                {isInStock ? (
+                  <>
+                    <button
+                      className="mt-3 w-full lg:w-1/2 btn btn-sm btn-outline hover:bg-[#f54b87] hover:border-[#f54b87]"
+                      onClick={addToCart}
+                      disabled={!product}
+                    >
+                      Add To Cart
+                    </button>
+                    <Link
+                      className="flex-1"
+                      to={{ pathname: "/order" }}
+                      state={{ product: product }}
+                    >
+                      <p className="mt-3 w-full btn btn-sm bg-[#F0729F] hover:bg-[#f54b87] text-white">
+                        BUY NOW
+                      </p>
+                    </Link>
+                  </>
+                ) : (
+                  <p className="w-full text-center border bg-[#F0729F] text-white font-medium p-2 rounded-md">
+                    Out of Stock
+                  </p>
+                )}
               </div>
               <div className="flex gap-3 items-center">
                 <IoCalendarClearOutline size={25} />
@@ -178,7 +220,7 @@ const Details = () => {
               </div>
               <div>
                 <h4 className="text-xl font-bold">Product Description</h4>
-                <p>{product.productDescription}</p>
+                <p className="text-justify">{product.productDescription}</p>
               </div>
             </div>
           </div>

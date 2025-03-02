@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineArrowsUpDown } from "react-icons/hi2";
 import { Link, useLocation } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { Helmet } from "react-helmet-async";
 
 const Subcategories = () => {
   const location = useLocation();
@@ -28,6 +29,9 @@ const Subcategories = () => {
   }, [path]);
   return (
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
+      <Helmet>
+        <title>{path.toLocaleUpperCase()}</title>
+      </Helmet>
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img
           className="w-full h-full object-cover"

@@ -4,6 +4,7 @@ import Product from "./Product";
 import ShopByBrand from "./ShopByBrand";
 import ShopByCategory from "./ShopByCategory";
 import TopSeller from "./TopSeller";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [cart, setCart] = useState(() => {
@@ -20,6 +21,9 @@ const Home = () => {
 
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto">
+      <Helmet>
+        <title>HOME</title>
+      </Helmet>
       <div className="">
         <Banner />
         <ShopByCategory />

@@ -50,7 +50,7 @@ const ProductCard = ({ productData, cart, setCart }) => {
   };
 
   const {
-    thumbnailUrl = ["/default-thumbnail.jpg"],
+    thumbnailUrl = ["thumbnail_placeholder.png"],
     brandName: brandname,
     productTitle: title,
     price,

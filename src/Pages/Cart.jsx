@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const Cart = () => {
@@ -134,6 +135,9 @@ const Cart = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MY CART</title>
+      </Helmet>
       {loader ? (
         <>
           <div className="flex justify-center items-center h-[70vh] w-full">

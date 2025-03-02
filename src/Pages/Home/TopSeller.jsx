@@ -39,7 +39,7 @@ const TopSeller = ({ cart, setCart }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <span className="loading loading-infinity loading-xl"></span>;
   }
 
   if (error) {
