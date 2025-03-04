@@ -79,8 +79,40 @@ function OrderForm() {
   return (
     <div>
       <Helmet>
-        <title>ORDER FORM</title>
+        <title>LUNA | Order Form</title>
+        <meta
+          name="description"
+          content="Complete your purchase with ease using LUNA's Order Form. Fill in the details to ensure your makeup and skincare products reach you promptly. Cash on Delivery available. Shipping to Dhaka and beyond."
+        />
+        <meta
+          name="keywords"
+          content="order form, LUNA, makeup order, skincare order, cash on delivery, shipping inside Dhaka, shipping outside Dhaka, beauty products order, purchase cosmetics"
+        />
+        <meta name="author" content="LUNA Store" />
+        <meta property="og:title" content="LUNA | Order Form" />
+        <meta
+          property="og:description"
+          content="Complete your purchase with ease using LUNA's Order Form. Fill in the details to ensure your makeup and skincare products reach you promptly. Cash on Delivery available. Shipping to Dhaka and beyond."
+        />
+        <meta property="og:image" content="/logo_transparent.png" />
+        <meta
+          property="og:url"
+          content="https://lunastorebd.web.app/order-form"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LUNA Store" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUNA | Order Form" />
+        <meta
+          name="twitter:description"
+          content="Complete your purchase with ease using LUNA's Order Form. Fill in the details to ensure your makeup and skincare products reach you promptly. Cash on Delivery available. Shipping to Dhaka and beyond."
+        />
+        <meta name="twitter:image" content="/logo_transparent.png" />
+        <meta name="twitter:site" content="@lunastorebd" />
+        <link rel="canonical" href="https://lunastorebd.web.app/order-form" />
       </Helmet>
+
       {loader ? (
         <>
           <div className="flex justify-center items-center h-[70vh] w-full">
@@ -104,7 +136,7 @@ function OrderForm() {
                     {product.productTitle}
                   </h3>
                 </div>
-                <div className="">
+                <div>
                   <label className="form-control lg:w-full">
                     <div className="label">
                       <span className="label-text text-lg font-semibold">

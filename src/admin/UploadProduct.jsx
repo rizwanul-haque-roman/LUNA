@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const UploadProduct = () => {
   const [product, setProduct] = useState({
@@ -84,6 +85,9 @@ const UploadProduct = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <Helmet>
+        <title>LUNA | Add Product</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Upload New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Title */}

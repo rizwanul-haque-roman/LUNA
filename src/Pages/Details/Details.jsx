@@ -88,7 +88,7 @@ const Details = () => {
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto mb-6">
       <Helmet>
-        <title>DETAILS</title>
+        <title>LUNA | Details</title>
       </Helmet>
       {loading ? (
         <span className="loading loading-infinity loading-xl"></span>

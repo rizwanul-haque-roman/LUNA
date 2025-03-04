@@ -14,6 +14,11 @@ const Subcategories = () => {
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
+  const capitalizeFirstLetter = (str) => {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("cartlen", JSON.stringify(cart.length));
@@ -30,7 +35,7 @@ const Subcategories = () => {
   return (
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
       <Helmet>
-        <title>{path.toLocaleUpperCase()}</title>
+        <title>LUNA | {capitalizeFirstLetter(path)}</title>
       </Helmet>
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img
@@ -45,15 +50,13 @@ const Subcategories = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to={`/${path}`}>
-              {path.charAt(0).toUpperCase() + path.slice(1)}
-            </Link>
+            <Link to={`/${path}`}>{capitalizeFirstLetter(path)}</Link>
           </li>
         </ul>
       </div>
       <div className="flex justify-between items-center">
         <h3 className="text-3xl lg:text-4xl font-bold">
-          {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+          {capitalizeFirstLetter(path)}{" "}
           <span className="text-2xl font-medium">
             <sup>{products.length} Products</sup>
           </span>

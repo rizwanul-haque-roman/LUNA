@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const OrderDetails = () => {
   const order = useLoaderData();
@@ -51,6 +52,9 @@ const OrderDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>LUNA | Order Details</title>
+      </Helmet>
       {loader ? (
         <>
           <div className="flex justify-center items-center h-[70vh] w-full">

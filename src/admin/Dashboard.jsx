@@ -10,6 +10,7 @@ import { toast } from "react-toastify"; // For notifications (optional)
 import "react-toastify/dist/ReactToastify.css"; // Import styles if using react-toastify
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -35,6 +36,9 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#FDF1F5]">
+      <Helmet>
+        <title>LUNA | Dashboard</title>
+      </Helmet>
       <div className="p-8 h-[100dvh] flex flex-col md:flex-row overflow-hidden">
         <button
           className="md:hidden text-black p-2 mb-4 rounded-md"

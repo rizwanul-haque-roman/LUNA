@@ -26,7 +26,7 @@ const Skincare = () => {
   return (
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
       <Helmet>
-        <title>SKINCARE</title>
+        <title>LUNA | Skincare</title>
       </Helmet>
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img className="w-full" src="/skincare.jpg" alt="Banner 2" />

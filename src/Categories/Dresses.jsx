@@ -26,7 +26,7 @@ const Dresses = () => {
   return (
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
       <Helmet>
-        <title>DRESSES</title>
+        <title>LUNA | Dresses</title>
       </Helmet>
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img

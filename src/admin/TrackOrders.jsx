@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const TrackOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -34,6 +35,9 @@ const TrackOrders = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>LUNA | Pending Orders</title>
+      </Helmet>
       <div>
         <h3 className="text-3xl font-bold">Available Orders</h3>
       </div>

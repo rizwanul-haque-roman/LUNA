@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,6 +24,9 @@ const Products = () => {
 
   return (
     <div className="overflow-y-auto max-h-[80dvh]">
+      <Helmet>
+        <title>LUNA | Products</title>
+      </Helmet>
       <table className="min-w-full table-md border-collapse">
         <thead>
           <tr className="bg-gray-200 text-left">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "chart.js/auto";
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
   const [orders, setOrders] = useState([]);
@@ -74,6 +75,9 @@ const AdminHome = () => {
 
   return (
     <div className="p-6 overflow-hidden">
+      <Helmet>
+        <title>LUNA | Admin Home</title>
+      </Helmet>
       <div className="grid xl:grid-cols-2 gap-8">
         <div className="bg-[#E6E6FA] px-4 py-4 rounded-lg text-center">
           <h3 className="font-semibold text-2xl">Total Income</h3>

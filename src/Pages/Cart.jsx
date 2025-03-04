@@ -136,8 +136,86 @@ const Cart = () => {
   return (
     <div>
       <Helmet>
-        <title>MY CART</title>
+        <title>LUNA | My Cart</title>
+        <meta name="title" content="My Cart" />
+        <meta
+          name="description"
+          content="Shop women's fashion at LUNA. Review your cart and complete your order today. Enjoy fast delivery across Bangladesh with Cash On Delivery option."
+        />
+        <meta
+          name="keywords"
+          content="makeup, skin care, korean makeup, skincare products, cosmetics, beauty products, face products, korean beauty, makeup products, skincare, makeup online, beauty cosmetics, best skin care products, makeup lipstick, korean skin care, beauty and cosmetics, makeup store, makeup brands, korean skincare products, beauty shop, online cosmetics, korean beauty products, makeup shops near me, best makeup products, natural makeup, affordable makeup, beauty online store, skincare products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="author" content="LUNA" />
+
+        {/* Open Graph Meta Tags for Facebook */}
+        <meta property="og:title" content="My Cart" />
+        <meta
+          property="og:description"
+          content="Shop women's fashion at LUNA. Review your cart and complete your order today. Enjoy fast delivery across Bangladesh with secure payment options."
+        />
+        <meta
+          property="og:image"
+          content={
+            cart.length > 0 ? cart[0].thumbnailUrl[0] : "/logo_transparent.png"
+          }
+        />
+        <meta property="og:url" content="https://lunastorebd.web.app/cart" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LUNA" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUNA | My Cart" />
+        <meta
+          name="twitter:description"
+          content="Shop women's fashion at LUNA. Review your cart and complete your order today. Enjoy fast delivery across Bangladesh with secure payment options."
+        />
+        <meta
+          name="twitter:image"
+          content={
+            cart.length > 0 ? cart[0].thumbnailUrl[0] : "/logo_transparent.png"
+          }
+        />
+        <meta name="twitter:site" content="@lunastorebd" />
+
+        {/* Canonical Link */}
+        <link rel="canonical" href="https://lunastorebd.web.app/cart" />
+
+        {/* Favicon */}
+        <link rel="icon" type="image/svg+xml" href="/moon.png" />
+
+        {/* Schema.org Structured Data (JSON-LD) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "My Cart - LUNA",
+            url: "https://lunastorebd.web.app/cart",
+            description:
+              "Shop women's fashion at LUNA. Review your cart and complete your order today. Enjoy fast delivery across Bangladesh with secure payment options.",
+            image:
+              cart.length > 0
+                ? cart[0].thumbnailUrl[0]
+                : "/logo_transparent.png",
+            publisher: {
+              "@type": "Organization",
+              name: "LUNA",
+              url: "https://lunastorebd.web.app",
+              logo: {
+                "@type": "ImageObject",
+                url: "/logo_transparent.png",
+              },
+            },
+          })}
+        </script>
       </Helmet>
+
       {loader ? (
         <>
           <div className="flex justify-center items-center h-[70vh] w-full">
@@ -239,7 +317,7 @@ const Cart = () => {
               </div>
               <div className="mt-12 gap-12 flex flex-col-reverse lg:flex-row justify-center">
                 <form onSubmit={handleSubmit} className="lg:w-1/2 mb-12">
-                  <div className="">
+                  <div>
                     <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text text-lg font-semibold">

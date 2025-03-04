@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { AuthContext } from "../Context/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [viewPass, setVewPass] = useState(true);
@@ -53,6 +54,9 @@ const Login = () => {
 
   return (
     <div className="w-11/12 bg-[url('/loginPage.jpg')] lg:w-full mx-auto h-[80dvh] bg-cover bg-center bg-no-repeat flex items-center">
+      <Helmet>
+        <title>LUNA | Admin Login</title>
+      </Helmet>
       <div className="w-auto mx-auto">
         <form
           onSubmit={handleSubmit}

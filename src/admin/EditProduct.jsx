@@ -69,6 +69,9 @@ const EditProduct = () => {
 
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto mb-6">
+      <Helmet>
+        <title>LUNA | Edit Product</title>
+      </Helmet>
       {loading ? (
         <span className="loading loading-infinity loading-xl"></span>
       ) : (

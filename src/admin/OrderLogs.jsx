@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const OrderLogs = () => {
   const [orders, setOrders] = useState([]);
@@ -39,6 +40,9 @@ const OrderLogs = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>LUNA | Order History</title>
+      </Helmet>
       <h3 className="text-3xl font-bold">Order Logs</h3>
       <div className="overflow-x-auto mt-8">
         <table className="table table-sm text-base w-full border border-gray-300">
