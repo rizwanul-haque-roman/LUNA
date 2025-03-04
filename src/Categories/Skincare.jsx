@@ -27,7 +27,39 @@ const Skincare = () => {
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
       <Helmet>
         <title>LUNA | Skincare</title>
+        <meta
+          name="description"
+          content="Explore a wide range of skincare products on LUNA. Shop now for high-quality beauty items and enjoy fast shipping across Bangladesh. Discover the best in skincare and beauty online."
+        />
+        <meta
+          name="keywords"
+          content="LUNA, skincare, beauty products, skincare products, cosmetics, beauty store, Bangladesh beauty shop, skincare online, skincare in Bangladesh"
+        />
+        <meta name="author" content="LUNA Store" />
+        <meta property="og:title" content="LUNA | Skincare" />
+        <meta
+          property="og:description"
+          content="Explore a wide range of skincare products on LUNA. Shop now for high-quality beauty items and enjoy fast shipping across Bangladesh. Discover the best in skincare and beauty online."
+        />
+        <meta property="og:image" content="/skincare.jpg" />
+        <meta
+          property="og:url"
+          content="https://lunastorebd.web.app/skincare"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LUNA Store" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUNA | Skincare" />
+        <meta
+          name="twitter:description"
+          content="Explore a wide range of skincare products on LUNA. Shop now for high-quality beauty items and enjoy fast shipping across Bangladesh. Discover the best in skincare and beauty online."
+        />
+        <meta name="twitter:image" content="/skincare.jpg" />
+        <meta name="twitter:site" content="@lunastorebd" />
+        <link rel="canonical" href="https://lunastorebd.web.app/skincare" />
       </Helmet>
+
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img className="w-full" src="/skincare.jpg" alt="Banner 2" />
       </div>

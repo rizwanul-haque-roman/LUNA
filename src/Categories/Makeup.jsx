@@ -28,7 +28,36 @@ const Makeup = () => {
     <div className="w-11/12 lg:max-w-screen-xl min-h-screen mx-auto">
       <Helmet>
         <title>LUNA | Makeup</title>
+        <meta
+          name="description"
+          content="Discover a wide range of makeup products on LUNA. Shop now for high-quality cosmetics and enjoy fast shipping across Bangladesh. Find the best in makeup and beauty online."
+        />
+        <meta
+          name="keywords"
+          content="LUNA, makeup, beauty products, makeup products, cosmetics, beauty store, Bangladesh beauty shop, makeup online, makeup in Bangladesh"
+        />
+        <meta name="author" content="LUNA Store" />
+        <meta property="og:title" content="LUNA | Makeup" />
+        <meta
+          property="og:description"
+          content="Discover a wide range of makeup products on LUNA. Shop now for high-quality cosmetics and enjoy fast shipping across Bangladesh. Find the best in makeup and beauty online."
+        />
+        <meta property="og:image" content="/makeup.jpg" />
+        <meta property="og:url" content="https://lunastorebd.web.app/makeup" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LUNA Store" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUNA | Makeup" />
+        <meta
+          name="twitter:description"
+          content="Discover a wide range of makeup products on LUNA. Shop now for high-quality cosmetics and enjoy fast shipping across Bangladesh. Find the best in makeup and beauty online."
+        />
+        <meta name="twitter:image" content="/makeup.jpg" />
+        <meta name="twitter:site" content="@lunastorebd" />
+        <link rel="canonical" href="https://lunastorebd.web.app/makeup" />
       </Helmet>
+
       <div className="w-full h-[20vh] lg:h-[43dvh] overflow-hidden rounded-3xl">
         <img
           className="w-full h-full object-cover"

@@ -89,7 +89,36 @@ const Details = () => {
     <div className="w-11/12 max-w-screen-xl mx-auto mb-6">
       <Helmet>
         <title>LUNA | Details</title>
+        <meta
+          name="description"
+          content="Explore detailed product information on LUNA. Discover the brand, features, and benefits of your favorite makeup and skincare items. Shop confidently with our 100% original branded products and cash on delivery option."
+        />
+        <meta
+          name="keywords"
+          content="LUNA product details, makeup details, skincare details, brand information, product features, beauty products, original branded products, cash on delivery, Dhaka shipping, Bangladesh beauty store"
+        />
+        <meta name="author" content="LUNA Store" />
+        <meta property="og:title" content="LUNA | Details" />
+        <meta
+          property="og:description"
+          content="Explore detailed product information on LUNA. Discover the brand, features, and benefits of your favorite makeup and skincare items. Shop confidently with our 100% original branded products and cash on delivery option."
+        />
+        <meta property="og:image" content="/logo_transparent.png" />
+        <meta property="og:url" content="https://lunastorebd.web.app/details" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LUNA Store" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUNA | Details" />
+        <meta
+          name="twitter:description"
+          content="Explore detailed product information on LUNA. Discover the brand, features, and benefits of your favorite makeup and skincare items. Shop confidently with our 100% original branded products and cash on delivery option."
+        />
+        <meta name="twitter:image" content="/logo_transparent.png" />
+        <meta name="twitter:site" content="@lunastorebd" />
+        <link rel="canonical" href="https://lunastorebd.web.app/details" />
       </Helmet>
+
       {loading ? (
         <span className="loading loading-infinity loading-xl"></span>
       ) : (
