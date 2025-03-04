@@ -1,0 +1,31 @@
+# Allow all web crawlers access to all content
+User-agent: *
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /upload/
+Disallow: /login/
+
+# Block specific files or sensitive data
+Disallow: /private/
+Disallow: /server/
+Disallow: /temp/
+
+# Block specific file types
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.exe$
+
+# Allow specific assets (useful for certain web apps)
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap location
+Sitemap: https://lunastorebd.web.app/sitemap.xml
+
+# Crawl-delay directive (optional, helpful if your server load is high)
+Crawl-delay: 10
+
+# Specific bot directives (optional, for blocking or allowing specific bots)
+User-agent: BadBot
+Disallow: /
