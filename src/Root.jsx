@@ -3,10 +3,12 @@ import Navbar from "./Pages/Navbar/Navbar";
 import Footer from "./Pages/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GTMPageView from "./GTMPageView";
 
 const Root = () => {
   return (
     <div>
+      <GTMPageView />
       <Navbar />
       <Outlet />
       <Footer />

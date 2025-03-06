@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { PiHandbagSimpleThin } from "react-icons/pi";
 import { useEffect, useState } from "react";
+import { event } from "../../gtagEvent";
 
 const Navbar = () => {
   const [cartLen, setCartLen] = useState(0);
@@ -37,6 +38,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
+          onClick={() => event("click")}
           to="/"
           className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
@@ -45,6 +47,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          onClick={() => event("click")}
           to="/makeup"
           className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
@@ -53,6 +56,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          onClick={() => event("click")}
           to="/skincare"
           className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
@@ -61,6 +65,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          onClick={() => event("click")}
           to="/dresses"
           className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
@@ -69,6 +74,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          onClick={() => event("click")}
           to="/hijab&abaya"
           className={({ isActive }) => (isActive ? "underline font-bold" : "")}
         >
@@ -112,7 +118,7 @@ const Navbar = () => {
               </ul>
             )}
           </div>
-          <a className="text-xl" href="/">
+          <a className="text-xl" href="/" onClick={() => event("click")}>
             <img className="w-[80px]" src="/logo_transparent.png" alt="" />
           </a>
         </div>
@@ -153,7 +159,7 @@ const Navbar = () => {
             </svg>
           </label>
           <div className="flex justify-center items-center gap-8">
-            <Link to={"/cart"}>
+            <Link to={"/cart"} onClick={() => event("click")}>
               <p className="flex gap-22">
                 <PiHandbagSimpleThin size={30} />
                 {/* {JSON.parse(localStorage.getItem("cartlen"))} */}
