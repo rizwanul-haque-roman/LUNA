@@ -188,24 +188,6 @@ const Details = () => {
               <p className="text-2xl font-bold text-[#F0729F]">
                 ৳ {product.price} BDT
               </p>
-              {/* <div className="flex gap-6">
-                <button
-                  onClick={addToCart}
-                  className="btn lg:btn-wide btn-outline hover:bg-[#f54b87] hover:border-[#f54b87] text-lg"
-                >
-                  Add to cart
-                </button>
-                <Link
-                  to={{
-                    pathname: "/order",
-                  }}
-                  state={{ product }}
-                >
-                  <button className="btn lg:btn-wide bg-[#F0729F] hover:bg-[#f54b87] text-lg">
-                    Buy Now
-                  </button>
-                </Link>
-              </div> */}
               <div className="flex flex-col lg:flex-row lg:gap-4 justify-between">
                 {isInStock ? (
                   <>
