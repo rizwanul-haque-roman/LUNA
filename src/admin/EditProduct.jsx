@@ -84,7 +84,6 @@ const EditProduct = () => {
                 <Swiper
                   loop={true}
                   spaceBetween={10}
-                  // navigation={true}
                   thumbs={{ swiper: thumbsSwiper }}
                   modules={[FreeMode, Thumbs]}
                   className="mySwiper2"
@@ -296,24 +295,3 @@ const EditProduct = () => {
 
 export default EditProduct;
 
-{
-  /*
-
-    "_id": "67ae34fe5220625a78716a14",
-    "brandName": "L'Oréal Paris",
-    "productTitle": "Revitalift Hyaluronic Acid Serum (30ml)",
-    "price": "1999",
-    "category": "skincare",
-    "subcategory": "serums",
-    "sub_subcategory": "hydrating-serum",
-    "status": "best-selling",
-    "stock": "10",
-    "productDescription": "L'Oréal Paris Revitalift Hyaluronic Acid Serum provides intense hydration, plumps the skin, and reduces fine lines. Formulated with micro and macro hyaluronic acid molecules for deep penetration and long-lasting moisture.",
-    "thumbnailUrl": [
-      "https://i.ibb.co/Y7HnKS7r/4.jpg",
-      "https://i.ibb.co/VcJXt59x/3.jpg",
-      "https://i.ibb.co/nqX3G7rf/2.jpg",
-      "https://i.ibb.co/Fb5ZyqZx/1.jpg"    
-    
-*/
-}
