@@ -8,6 +8,7 @@ import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const EditProduct = () => {
   const navigate = useNavigate();
